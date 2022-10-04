@@ -1,0 +1,49 @@
+{
+  "name": "@skirtle/vue-vnode-utils",
+  "version": "0.0.0",
+  "author": "skirtle",
+  "license": "MIT",
+  "homepage": "https://skirtles-code.github.io/vue-vnode-utils/",
+  "bugs": "https://github.com/skirtles-code/vue-vnode-utils/issues",
+  "repository": "github:skirtles-code/vue-vnode-utils",
+  "sideEffects": false,
+  "main": "dist/vue-vnode-utils.cjs",
+  "module": "dist/vue-vnode-utils.esm-bundler.js",
+  "unpkg": "dist/vue-vnode-utils.global.dev.js",
+  "jsdelivr": "dist/vue-vnode-utils.global.dev.js",
+  "types": "dist/vue-vnode-utils.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/vue-vnode-utils.d.ts",
+      "import": "./dist/vue-vnode-utils.esm-bundler.js",
+      "require": "./dist/vue-vnode-utils.cjs"
+    },
+    "./dist/*": "./dist/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "vue": "^3.2.0"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^20.0.0",
+    "@types/node": "^18.8.1",
+    "@vitejs/plugin-vue": "^3.1.2",
+    "@vue/tsconfig": "^0.1.3",
+    "typescript": "^4.8.4",
+    "vite": "^3.1.4",
+    "vite-plugin-dts": "^1.6.4",
+    "vue": "^3.2.0",
+    "vue-tsc": "^0.40.13"
+  },
+  "scripts": {
+    "build": "pnpm build-dev && pnpm build-neutral && pnpm build-prod && pnpm type-check",
+    "build-dev": "vite build --mode development",
+    "build-neutral": "vite build --mode neutral",
+    "build-prod": "vite build --mode production",
+    "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
+    "preinstall": "npx only-allow pnpm"
+  }
+}
