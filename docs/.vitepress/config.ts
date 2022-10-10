@@ -31,6 +31,9 @@ export default defineConfigWithTheme({
           {
             text: 'What is vue-vnode-utils?',
             link: '/guide/introduction.html'
+          }, {
+            text: 'Installation',
+            link: '/guide/installation.html'
           }
         ]
       }
