@@ -18,6 +18,22 @@ export default defineConfigWithTheme({
   themeConfig: {
     socialLinks: [
       { icon: 'github', link: 'https://github.com/skirtles-code/vue-vnode-utils' }
+    ],
+
+    nav: [
+      { text: 'Guide', link: '/guide/introduction.html' }
+    ],
+
+    sidebar: [
+      {
+        text: 'Guide',
+        items: [
+          {
+            text: 'What is vue-vnode-utils?',
+            link: '/guide/introduction.html'
+          }
+        ]
+      }
     ]
   }
 })
