@@ -26,7 +26,7 @@ export default defineConfigWithTheme({
 
     sidebar: [
       {
-        text: 'Guide',
+        text: 'Getting started',
         items: [
           {
             text: 'What is vue-vnode-utils?',
@@ -34,6 +34,14 @@ export default defineConfigWithTheme({
           }, {
             text: 'Installation',
             link: '/guide/installation.html'
+          }
+        ]
+      }, {
+        text: 'Reference',
+        items: [
+          {
+            text: 'Examples',
+            link: '/examples.html'
           }
         ]
       }
