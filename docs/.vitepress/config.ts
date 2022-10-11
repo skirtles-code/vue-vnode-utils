@@ -42,6 +42,9 @@ export default defineConfigWithTheme({
           {
             text: 'Examples',
             link: '/examples.html'
+          }, {
+            text: 'API',
+            link: '/api.html'
           }
         ]
       }
