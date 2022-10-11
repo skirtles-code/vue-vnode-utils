@@ -19,6 +19,8 @@ Working with the array of children is sometimes relatively straightforward, but 
 
 In general, manipulating VNodes is quite difficult, but `vue-vnode-utils` can help with some of the most common cases. The various helpers can be used to iterate over the 'top-level' child VNodes, including those wrapped in fragments. They can then be used to add or remove VNodes, or change the props of the existing VNodes.
 
+---
+
 An example of adding a CSS `class` to the children in a slot:
 
 ```js
@@ -38,6 +40,10 @@ export default {
 }
 ```
 
+See it on the SFC Playground: [Composition API](https://sfc.vuejs.org/#eNp1VE2P2jAQ/Suj9ECQ8kWrXlKg3e65VU+9NFUViAHvJrZlO1kQy3/vs0n42gVxGL9588Yz48k+eFAq6VoW5MHULDVXlgyzrZoXgjdKakt70mwV0VI2qrWsogOttGxohKDRifS44XX1CIoUTNiekaTXsMuDkEIspTAWii2oMycffhoPKLesMUCHfGE4ptmcfpR2kzTlNsyi3uYi9ApJV9Yti2iSjcdQmabHMlAADhBTdWkZTkRTLiBJXdzIitWzIvDxRUB2pxiOom0WTOMMbRwzZ5VbWBOYR4XrgjwGtOLd/DtbSc2mqbPPMJIBdtrE8Xe19VLut9+ToMOhp9+Ezh9WlukzOr3pJsBpeqoviILjKOKmVMmTkQIT3bu4oncgcU4ecRhG4c5FsLFWmTxNzWrp5vNkEqnXKaxEozm8YQkzTbzQ8sUwDeEiiAaNb+aZa1szx447gabGreW1T3QWboV6XicYZ3qPjxKNvQWv0lasu04NcgpHx3SsmaiYdnO7X84N9U1JThZjOKCLb5/seTUul2Lz/iLsqayqX1oqc/LfK9uvAtv6sIqtyrZGuLuJX8DwXwQxU0sLpfEwOA2XFnTciR4j7IrbHMf9/RPybn18IPrmZb8mCHh9pT9/XcrLmKWrFm1BxHDv8KwT3SY6XeACgVRdGpPTqNnFXg+FDa7+bcPAag52r7EJR3jbI3xa+kuA4ql+xP1Ebhfa2F3ttjkZkh2vspAak81porZkZM0r+pBl2Rfnakq95iK2UuX0WW17bBu/8MpucvqYZT2o0AEu1gPrmNqnCw7/AWnfumY=) | [Options API](https://sfc.vuejs.org/#eNp1VMmO2zAM/RXCLZAM4C0tenGdtNM5t+ipl7oHJ1ZizVgLJNnjION/LyVvWSZBDuIj+Z5IkT55j1KGTU28xEv1TlFpNhmnTApl4KmkVfEk0OCEG9grwWARRpewTV5kPOOkdUkF2ed1ZeCUcYDdGKWTHoArUot1vk0HKHKTLx/GOEVMrfhoWaqamwQ+93Z3nmhVakOKSYMawvRMNZH9zE0Zsrxdxv5wpnxpSqpDx+7DKn54OBfIOP7TaGoMGkgtq9wQtABSylEZmoCJglTrzHM8mQfmKAmavGZbotBGITRje8pbPK3w2DNc9sNhiBa02fwge6FIGtnzDKMYwpYbKP5tpQOV/Z1OwKFzl8fwq9TN494QNaPp1VMimEZTfZ7v9XMQsFyGz1pwnBHX0WxwoPDU8szDObB25pXGSJ1Ekd7v7HA861CoQ4SnUGFzKCMh0SzYKvGqiULizMN37Dm+6xeqTEVsdNBwbGpQG1o5oZm45vLlgE/GonvxWKI21+CFbEGaS2kMjtDREBUowgui7LvdL+cq9KakcXywi7f78t6ynaCEbtixfqUmR14Uv5WQevLfK/vuHvbXnDdiJ7g2oCth/vzCbA1rcGvw0UIam+Nyv4WY8fYGf/8NTTrL3dmikBYzx+stZz4fMHO9uVnAyUaaKtf4VViwY+C48O69YxjeDhfx4ktQLhc4uAt/knab+t6KanOs7H6GI3evuxUKm5DASragRUUL+BDH8VfrYrk6UB4YIRP4ItsBa4NXWpgygU9xPIASi6X8MEb10k7O6/4DlCPHWQ==)
+
+---
+
 An example of inserting an `<hr>` between each of the children:
 
 ```js
@@ -52,6 +58,10 @@ export default {
   }
 }
 ```
+
+See it on the SFC Playground: [Composition API](https://sfc.vuejs.org/#eNp1lE2P2jAQhv/KKD0kSPmiVS8pH93uuT320lRVIAPxbmJbthNYofz3jp0ESrYgDvbrmWc8Hl4u3pOUcdeil3krvVdMGtBoWrnJOWukUAYuoPAQwl40sjVYQg8HJRrwKcm/Bj1XrC6fKURw5GaMiJN72dahlJzvBdeGiC2Fri0++LSYVGaw0aRO9YJgAesNfC9MFTfFOUjDcc144AhxV9QthrBMFwuirJKhDWqANgSTdWGQdgArxgkJXdSIEut17rn83APzJpG2vG12qGhPbNqmdlWcabWk5UC4b8hppJas23zDg1C4Suz6JlMxki0bGH1tbyPKfi4X4ND3Y/gsdfN0MKhu6mr2miSukmt/XugNo4iaQsYvWnCa6MXm5eMBFc7AKVajUdh97lXGSJ0liT7s7XxedCzUMaFVrOhxWIMx6ibaKXHSqAice+HE+KpfmTI12uio4/SoUWtY7QrdwC2Xr8eYxpk8iqcWtZmLd2VL7O5LU3BCBx2qSCEvUdm5PW5nFvquJYulMfT0iu9/sjdr/GuK6v9GuMAOzQmROw4VvIY96t45As8uu8RD0dZEsRdyPgz+hMTUtTAa+sU0P0VHisNgjVEDsow1kI39+YPw1kUukZ7PYbcxJWy38Ov3fcZ+uup6fvngBgvHalXgV8q3Tpsg42XogH6qvr3uvi60zsB34Mg62T2mDz39j4zoxZA8QJwF7ADm/tXmrbbmjWeooemdUDTPDJbyDFrUrIQPaZp+sUdNoY6MR0bIDD7L86idoxMrTZXBxzQdRVmUJePHKWq4gavq9X8BjCK8dQ==) | [Options API](https://sfc.vuejs.org/#eNp1VE1z2jAQ/Ss7bmcMM/iDdnpxgTbNuT32Uvdg8IKV2JJGWgMZwn/PSgYDTmA4aJ9239Ou9HwIHrSOty0GWTCzKyM0LXIpGq0MwWMl6vJRcSBREqyNaiCMk1vYFYe5zCXufVGJ66KtCQ65BFids2zWATAgddhx4soByoKK0ficZ5BaI8+Ro2olZfC1i4/XhU6lJSx7DUHY2AtVT/a7oCpuiv0onZzWQo6oEjb27BOYpuPxtUAu+T9L+sFwwNS6Lgg5ApgJycqwjRpVYj3PA8+TB0AvGjmUbbNEwzELcZi6VbHn1ZSXHcPtPDzGaCm2i1+4VgZniVtfYBZj2HGD4L/r9ETlfocDSDj6w3P6oHTxsCY0F3Q2uEoGZ0nfXzAJuncQNYWOn6yS/Eb8RPPTBgv3I88DfgcuzoOKSNssSex65R7Hk42V2SS8ig0PRzQYo22ipVE7i4aJ84DvseP4aZ+FoRpddrSVPNSoJVF7oQtxK/Xzhq+sSe7lc4uWhuCNbInbW2lOTnhjiyYyKEs07t7utzNIfdfS+fnwFN/75SOzHaCC48ljnaX6jSXSDlF6Hhbs0+51f9eO3WkvxlgpaQlsrejvH662MAfvhs8OsjwjX/sj5orXV/j3/7pqdT7NfHi+0YVwAlw6X0A1CisTOm/dmJthfovhhHtc1YXlj0ToaaP+uxGyyXspb82PPGnppXaGjAfVXZ9LZbjrDKZ6D1bVooRPaZp+d1tNYTZCRqR0Bt/0/oTto50oqcrgS5qeQF2UpZCbc1Z3Aq8aHN8A8svKIg==)
+
+---
 
 There are more detailed examples, with demos, later in the guide. The key thing to appreciate is that these components will work even if the slotted content is using directives like `v-for` or `v-if`. The helper functions will walk the tree of fragments created by `v-for` and skip over the hidden comment nodes created by `v-if`, yielding the component and element nodes that would typically be regarded as the 'direct' children.
 
