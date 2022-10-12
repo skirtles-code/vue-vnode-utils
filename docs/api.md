@@ -78,6 +78,10 @@ The callback will be passed fully instantiated VNodes. Children will be converte
 
 The [`options`](#iterationoptions) object can be used to decide which node types should be passed to the callback. If no options object is passed then all nodes will be iterated. If an `options` object is passed, all nodes will be skipped by default unless explicitly ruled in.
 
+### See also
+
+* [Guide - Iterators](/guide/iterators.html)
+
 ## everyChild()
 
 ### Type
@@ -99,6 +103,10 @@ If the callback returns a falsy value then the iteration will exit and `everyChi
 The callback will be passed fully instantiated VNodes. Children will be converted to VNodes as required.
 
 The [`options`](#iterationoptions) object can be used to decide which node types should be passed to the callback. If no options object is passed then all nodes will be iterated. If an `options` object is passed, all nodes will be skipped by default unless explicitly ruled in.
+
+### See also
+
+* [Guide - Iterators](/guide/iterators.html)
 
 ## extractSingleChild()
 
@@ -145,6 +153,10 @@ If the callback returns a truthy value then the iteration will exit and `findChi
 The callback will be passed fully instantiated VNodes. Children will be converted to VNodes as required. As a result, it is possible that the returned VNode is not actually present in the original array of nodes. In practice this should rarely be a problem, as slot functions return fully instantiated VNodes.
 
 The [`options`](#iterationoptions) object can be used to decide which node types should be passed to the callback. If no options object is passed then all nodes will be iterated. If an `options` object is passed, all nodes will be skipped by default unless explicitly ruled in.
+
+### See also
+
+* [Guide - Iterators](/guide/iterators.html)
 
 ## getText()
 
@@ -387,3 +399,7 @@ If the callback returns a truthy value then the iteration will exit and `someChi
 The callback will be passed fully instantiated VNodes. Children will be converted to VNodes as required.
 
 The [`options`](#iterationoptions) object can be used to decide which node types should be passed to the callback. If no options object is passed then all nodes will be iterated. If an `options` object is passed, all nodes will be skipped by default unless explicitly ruled in.
+
+### See also
+
+* [Guide - Iterators](/guide/iterators.html)

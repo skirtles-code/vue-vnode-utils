@@ -37,6 +37,14 @@ export default defineConfigWithTheme({
           }
         ]
       }, {
+        text: 'Guide',
+        items: [
+          {
+            text: 'Iterators',
+            link: '/guide/iterators.html'
+          }
+        ]
+      }, {
         text: 'Reference',
         items: [
           {
