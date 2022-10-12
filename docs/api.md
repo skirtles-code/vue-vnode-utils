@@ -58,6 +58,7 @@ A new array will be returned and the passed array and its contents should be lef
 ### See also
 
 * [Example - Inserting between children](/examples.html#inserting-between-children)
+* [Guide - Inserting new nodes](/guide/inserting-new-nodes.html)
 
 ## eachChild()
 

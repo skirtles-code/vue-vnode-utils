@@ -45,6 +45,9 @@ export default defineConfigWithTheme({
           }, {
             text: 'Adding props',
             link: '/guide/adding-props.html'
+          }, {
+            text: 'Inserting new nodes',
+            link: '/guide/inserting-new-nodes.html'
           }
         ]
       }, {
