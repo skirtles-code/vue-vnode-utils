@@ -22,11 +22,12 @@ Eligible VNodes will be passed to the provided callback. The callback should ret
 
 A new array of VNodes is returned.
 
-### Examples
+### See also
 
-* [Adding a class](/examples.html#adding-a-class)
-* [Adding component v-model](/examples.html#adding-component-v-model)
-* [Adding a `ref` to a slot](/examples.html#adding-a-ref-to-a-slot)
+* [Example - Adding a class](/examples.html#adding-a-class)
+* [Example - Adding component v-model](/examples.html#adding-component-v-model)
+* [Example - Adding a `ref` to a slot](/examples.html#adding-a-ref-to-a-slot)
+* [Guide - Adding props](/guide/adding-props.html)
 
 ## betweenChildren()
 
@@ -54,9 +55,9 @@ The exact position of the newly inserted nodes within the tree is an implementat
 
 A new array will be returned and the passed array and its contents should be left unmodified. Any fragment nodes will be cloned as required to avoid mutating the input nodes. The returned array may contain some of the same nodes as the input array, as nodes are not cloned in cases where it can be avoided.
 
-### Examples
+### See also
 
-* [Inserting between children](/examples.html#inserting-between-children)
+* [Example - Inserting between children](/examples.html#inserting-between-children)
 
 ## eachChild()
 
@@ -124,13 +125,10 @@ As with the other helpers, the children of fragments will be considered top-leve
 
 The intended use case is for components that only support a single child node in a slot, like Vue's built-in components `<Transition>` and `<KeepAlive>`.
 
-### Examples
-
-* [Adding a `ref` to a slot](/examples.html#adding-a-ref-to-a-slot)
-
 ### See also
 
 * [`findChild()`](#findchild)
+* [Example - Adding a `ref` to a slot](/examples.html#adding-a-ref-to-a-slot)
 
 ## findChild()
 
@@ -250,13 +248,10 @@ Component nodes are treated as non-empty, but in practice a child component migh
 
 This helper is written using `someChild()`. If the exact criteria it uses to decide emptiness are not correct for your use case then it can be used as an example and adapted accordingly.
 
-### Examples
-
-* [Checking for empty content](/examples.html#checking-for-empty-content)
-
 ### See also
 
 * [`someChild()`](#somechild)
+* [Example - Checking for empty content](/examples.html#checking-for-empty-content)
 
 ## isFragment()
 
@@ -374,9 +369,9 @@ If the callback returns `null` or `undefined`, the current node will be left in 
 
 A new array will be returned and the passed array and its contents should be left unmodified. Any fragment nodes will be cloned as required to avoid mutating the input nodes. The returned array may contain some of the same nodes of the input array, as nodes are not cloned in cases where it can be avoided.
 
-### Examples
+### See also
 
-* [Wrap children](/examples.html#wrap-children)
+* [Example - Wrap children](/examples.html#wrap-children)
 
 ## someChild()
 

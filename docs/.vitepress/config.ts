@@ -42,6 +42,9 @@ export default defineConfigWithTheme({
           {
             text: 'Iterators',
             link: '/guide/iterators.html'
+          }, {
+            text: 'Adding props',
+            link: '/guide/adding-props.html'
           }
         ]
       }, {
