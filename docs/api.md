@@ -373,6 +373,7 @@ A new array will be returned and the passed array and its contents should be lef
 ### See also
 
 * [Example - Wrap children](/examples.html#wrap-children)
+* [Guide - Replacing nodes](/guide/replacing-nodes.html)
 
 ## someChild()
 

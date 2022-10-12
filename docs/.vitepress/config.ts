@@ -48,6 +48,9 @@ export default defineConfigWithTheme({
           }, {
             text: 'Inserting new nodes',
             link: '/guide/inserting-new-nodes.html'
+          }, {
+            text: 'Replacing nodes',
+            link: '/guide/replacing-nodes.html'
           }
         ]
       }, {
