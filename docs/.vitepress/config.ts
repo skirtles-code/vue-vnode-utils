@@ -1,5 +1,5 @@
 import { defineConfigWithTheme } from 'vitepress'
-import path from 'path'
+import { resolve } from 'node:path'
 
 export default defineConfigWithTheme({
   base: '/vue-vnode-utils',
@@ -10,7 +10,7 @@ export default defineConfigWithTheme({
   vite: {
     resolve: {
       alias: {
-        '@skirtle/vue-vnode-utils': path.resolve(__dirname, '../../src/vue-vnode-utils.ts')
+        '@skirtle/vue-vnode-utils': resolve(__dirname, '../../src/vue-vnode-utils.ts')
       }
     }
   },
@@ -62,6 +62,14 @@ export default defineConfigWithTheme({
           }, {
             text: 'API',
             link: '/api.html'
+          }
+        ]
+      }, {
+        text: 'Appendices',
+        items: [
+          {
+            text: 'Some notes on VNodes',
+            link: '/guide/some-notes-on-vnodes.md'
           }
         ]
       }
