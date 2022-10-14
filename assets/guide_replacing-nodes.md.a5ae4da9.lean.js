@@ -1,1 +1,0 @@
-import{_ as s,o as n,c as e,a}from"./app.e18a9c6c.js";const h=JSON.parse('{"title":"Replacing nodes","description":"","frontmatter":{},"headers":[],"relativePath":"guide/replacing-nodes.md"}'),l={name:"guide/replacing-nodes.md"},o=a("",9),p=[o];function t(r,c,i,d,y,D){return n(),e("div",null,p)}const C=s(l,[["render",t]]);export{h as __pageData,C as default};
