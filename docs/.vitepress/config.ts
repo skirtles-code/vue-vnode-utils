@@ -54,6 +54,9 @@ export default defineConfigWithTheme({
           }, {
             text: 'Checking the VNode type',
             link: '/guide/checking-the-vnode-type.html'
+          }, {
+            text: 'Other helpers',
+            link: '/guide/other-helpers.html'
           }
         ]
       }, {
