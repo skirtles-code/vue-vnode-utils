@@ -51,6 +51,9 @@ export default defineConfigWithTheme({
           }, {
             text: 'Replacing nodes',
             link: '/guide/replacing-nodes.html'
+          }, {
+            text: 'Checking the VNode type',
+            link: '/guide/checking-the-vnode-type.html'
           }
         ]
       }, {
