@@ -34,7 +34,9 @@ export default {
 
 <style scoped>
 .accordion {
+  background: #eee;
   border: 1px solid #ccc;
+  color: #213547;
   display: flex;
   flex-direction: column;
   height: 300px;

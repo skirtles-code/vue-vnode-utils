@@ -19,7 +19,7 @@ fieldset {
 }
 
 fieldset > ::v-deep(pre) {
-  background: #eee;
+  background: rgba(127, 127, 127, 0.15);
   border: 1px solid #ccc;
   padding: 2px;
 }
