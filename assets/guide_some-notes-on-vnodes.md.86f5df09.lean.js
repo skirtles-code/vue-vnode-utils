@@ -1,0 +1,1 @@
+import{_ as s,o as n,c as a,a as e}from"./app.31c728b8.js";const A=JSON.parse('{"title":"Some notes on VNodes","description":"","frontmatter":{},"headers":[],"relativePath":"guide/some-notes-on-vnodes.md"}'),o={name:"guide/some-notes-on-vnodes.md"},l=e("",38),p=[l];function t(c,r,i,y,D,F){return n(),a("div",null,p)}const h=s(o,[["render",t]]);export{A as __pageData,h as default};
