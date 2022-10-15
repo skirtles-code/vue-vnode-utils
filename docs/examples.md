@@ -184,7 +184,7 @@ In a real use case we'd probably be fine with reusing the same `<div>`, so the `
   <add-slot-ref-example />
 </live-example>
 
-Another way we might approach this is using `addProp()`. This could be used to add a `ref` to a single node, like in the previous example, or it could handle the more general case with multiple top-level nodes:
+Another way we might approach this is using `addProps()`. This could be used to add a `ref` to a single node, like in the previous example, or it could handle the more general case with multiple top-level nodes:
 
 <<< @/examples/add-multiple-refs.js
 

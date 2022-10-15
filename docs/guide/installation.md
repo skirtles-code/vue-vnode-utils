@@ -39,7 +39,7 @@ The URL above will include the development build, which is not minified and incl
 {
   "imports": {
     "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js",
-    "@skirtle/vue-vnode-utils": "https://unpkg.com/@skirtle/vue-vnode-utils/dist/vue-vnode-utils.esm-browser.dev.js",
+    "@skirtle/vue-vnode-utils": "https://unpkg.com/@skirtle/vue-vnode-utils/dist/vue-vnode-utils.esm-browser.dev.js"
   }
 }
 </script>

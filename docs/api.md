@@ -130,6 +130,7 @@ The intended use case is for components that only support a single child node in
 
 * [`findChild()`](#findchild)
 * [Example - Adding a `ref` to a slot](/examples.html#adding-a-ref-to-a-slot)
+* [Guide - Other helpers](/guide/other-helpers.html)
 
 ## findChild()
 
@@ -169,6 +170,10 @@ function getText(vnode: VNode | string | number): string | undefined
 
 Returns the text content of a text node. If the passed value is not a text node (consistent with [`isText()`](#istext)) then `undefined` will be returned instead.
 
+### See also
+
+* [Guide - Checking the VNode type](/guide/checking-the-vnode-type.html)
+
 ## getType()
 
 ### Type
@@ -190,6 +195,10 @@ Returns a string describing the type of VNode passed. The passed node doesn't ha
 
 If the passed value doesn't appear to be convertible to a VNode, the returned value will be `undefined`.
 
+### See also
+
+* [Guide - Checking the VNode type](/guide/checking-the-vnode-type.html)
+
 ## isComment()
 
 ### Type
@@ -201,6 +210,10 @@ function isComment(vnode: any): vnode is (null | undefined | boolean | (VNode & 
 ### Description
 
 Returns `true` if the passed value is considered to be a comment. This could be a comment VNode, or `undefined`, `null`, `false`, or `true`. This is consistent with how `render` functions and `h` treat children, with all of those values being converted to comment nodes.
+
+### See also
+
+* [Guide - Checking the VNode type](/guide/checking-the-vnode-type.html)
 
 ## isComponent()
 
@@ -218,6 +231,7 @@ Returns `true` if the passed value is a component VNode. This includes both stat
 
 * [`isFunctionalComponent()`](#isfunctionalcomponent)
 * [`isStatefulComponent()`](#isstatefulcomponent)
+* [Guide - Checking the VNode type](/guide/checking-the-vnode-type.html)
 
 ## isElement()
 
@@ -230,6 +244,10 @@ function isElement(vnode: any): vnode is (VNode & { type: string })
 ### Description
 
 Returns `true` if the passed value is an element VNode, e.g. a `<div>` or `<span>`.
+
+### See also
+
+* [Guide - Checking the VNode type](/guide/checking-the-vnode-type.html)
 
 ## isEmpty()
 
@@ -253,6 +271,7 @@ This helper is written using `someChild()`. If the exact criteria it uses to dec
 
 * [`someChild()`](#somechild)
 * [Example - Checking for empty content](/examples.html#checking-for-empty-content)
+* [Guide - Other helpers](/guide/other-helpers.html)
 
 ## isFragment()
 
@@ -265,6 +284,10 @@ function isFragment(vnode: any): vnode is ((VNode & { type: typeof Fragment }) |
 ### Description
 
 Returns `true` if the passed value is considered a fragment. This could either be a fragment VNode or an array. This is consistent with how `render` functions and `h` treat children, with arrays being converted to fragments.
+
+### See also
+
+* [Guide - Checking the VNode type](/guide/checking-the-vnode-type.html)
 
 ## isFunctionalComponent()
 
@@ -282,6 +305,7 @@ Returns `true` if the passed value is a VNode for a [functional component](https
 
 * [`isComponent()`](#iscomponent)
 * [`isStatefulComponent()`](#isstatefulcomponent)
+* [Guide - Checking the VNode type](/guide/checking-the-vnode-type.html)
 
 ## isStatefulComponent()
 
@@ -297,10 +321,9 @@ Returns `true` if the passed value is a VNode for a stateful (i.e. non-functiona
 
 ### See also
 
-### See also
-
 * [`isComponent()`](#iscomponent)
 * [`isFunctionalComponent()`](#isfunctionalcomponent)
+* [Guide - Checking the VNode type](/guide/checking-the-vnode-type.html)
 
 ## isStatic()
 
@@ -314,6 +337,10 @@ function isStatic(vnode: any): vnode is (VNode & { type: typeof Static })
 
 Returns `true` if the passed value is a static VNode. Static VNodes are a special kind of VNode used to render large quantities of static HTML without incurring the cost of creating an individual VNode for each element. They aren't returned from slot functions, so in practice they're unlikely to be encountered in the normal use cases for `vue-vnode-utils`.
 
+### See also
+
+* [Guide - Checking the VNode type](/guide/checking-the-vnode-type.html)
+
 ## isText()
 
 ### Type
@@ -325,6 +352,10 @@ function isText(vnode: any): vnode is (string | number | (VNode & { type: Text }
 ### Description
 
 Returns `true` if the passed value is considered to be text. This could be a text VNode, or a string, or a number. This is consistent with how `render` functions and `h` treat children, with strings and numbers being converted to text nodes.
+
+### See also
+
+* [Guide - Checking the VNode type](/guide/checking-the-vnode-type.html)
 
 ## IterationOptions
 

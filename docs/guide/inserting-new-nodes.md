@@ -22,4 +22,4 @@ The callback will be passed the two VNodes, allowing for conditional logic to de
 
 If the callback returns an array then the individual items will be inserted, it won't be treated as a fragment. Nested arrays will be treated as fragments. This is similar to passing children to `h()`. If the number of items being inserted is dynamic then wrapping them in a fragment can be a useful technique to ensure that VNodes get paired up correctly across re-renders. A fragment can also make it easier to assign suitable `key` values, as the children of a fragment are only eligible for pairing with each other.
 
-`betweenChildren` takes an optional third argument specifying [iteration options](/api.html#iterationoptions), much like with the [iterators](/guide/iterators.html). Unlike those iterators, the default value for `betweenChildren` is `SKIP_COMMENTS`.
+`betweenChildren()` takes an optional third argument specifying [iteration options](/api.html#iterationoptions), much like with the [iterators](/guide/iterators.html). Unlike those iterators, the default value for `betweenChildren()` is `SKIP_COMMENTS`.
