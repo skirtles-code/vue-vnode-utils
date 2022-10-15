@@ -18,35 +18,35 @@ import {
 // @ts-ignore
 const DEV = process.env.NODE_ENV !== 'production'
 
-export const isComment = (vnode: any): vnode is (null | undefined | boolean | (VNode & { type: Comment })) => {
+export const isComment = (vnode: unknown): vnode is (null | undefined | boolean | (VNode & { type: Comment })) => {
   return getType(vnode) === 'comment'
 }
 
-export const isComponent = (vnode: any): vnode is (VNode & { type: Component }) => {
+export const isComponent = (vnode: unknown): vnode is (VNode & { type: Component }) => {
   return getType(vnode) === 'component'
 }
 
-export const isElement = (vnode: any): vnode is (VNode & { type: string }) => {
+export const isElement = (vnode: unknown): vnode is (VNode & { type: string }) => {
   return getType(vnode) === 'element'
 }
 
-export const isFragment = (vnode: any): vnode is ((VNode & { type: typeof Fragment }) | VNodeArrayChildren) => {
+export const isFragment = (vnode: unknown): vnode is ((VNode & { type: typeof Fragment }) | VNodeArrayChildren) => {
   return getType(vnode) === 'fragment'
 }
 
-export const isFunctionalComponent = (vnode: any): vnode is (VNode & { type: FunctionalComponent }) => {
+export const isFunctionalComponent = (vnode: unknown): vnode is (VNode & { type: FunctionalComponent }) => {
   return isComponent(vnode) && typeof vnode.type === 'function'
 }
 
-export const isStatefulComponent = (vnode: any): vnode is (VNode & { type: ComponentOptions }) => {
+export const isStatefulComponent = (vnode: unknown): vnode is (VNode & { type: ComponentOptions }) => {
   return isComponent(vnode) && typeof vnode.type === 'object'
 }
 
-export const isStatic = (vnode: any): vnode is (VNode & { type: typeof Static }) => {
+export const isStatic = (vnode: unknown): vnode is (VNode & { type: typeof Static }) => {
   return getType(vnode) === 'static'
 }
 
-export const isText = (vnode: any): vnode is (string | number | (VNode & { type: Text })) => {
+export const isText = (vnode: unknown): vnode is (string | number | (VNode & { type: Text })) => {
   return getType(vnode) === 'text'
 }
 
@@ -68,7 +68,7 @@ export const getText = (vnode: VNode | string | number): string | undefined => {
 
 type ValueTypes = 'string' | 'number' | 'boolean' | 'undefined' | 'symbol' | 'bigint' | 'object' | 'function' | 'array' | 'date' | 'regexp' | 'vnode' | 'null'
 
-const typeOf = (value: any) => {
+const typeOf = (value: unknown) => {
   let t: ValueTypes = typeof value
 
   if (t === 'object') {
@@ -103,7 +103,7 @@ const checkArguments = (method: string, passed: unknown[], expected: string[]) =
   }
 }
 
-export const getType = (vnode: any) => {
+export const getType = (vnode: unknown) => {
   const typeofVNode = typeof vnode
 
   if (vnode == null || typeofVNode === 'boolean') {
@@ -138,7 +138,7 @@ export const getType = (vnode: any) => {
   return undefined
 }
 
-const isEmptyObject = (obj: any) => {
+const isEmptyObject = (obj: Record<string, unknown>) => {
   for (const prop in obj) {
     return false
   }
@@ -225,7 +225,7 @@ const promoteToVNode = (node: VNode | string | number | boolean | null | undefin
 
 export const addProps = (
   children: VNodeArrayChildren,
-  callback: (vnode: VNode) => (Record<string, any> | null | void),
+  callback: (vnode: VNode) => (Record<string, unknown> | null | void),
   options: IterationOptions = COMPONENTS_AND_ELEMENTS
 ): VNodeArrayChildren => {
   if (DEV) {
@@ -237,7 +237,7 @@ export const addProps = (
 
 const addPropsToChild = (
   child: VNodeChild,
-  callback: (vnode: VNode) => (Record<string, any> | null | void),
+  callback: (vnode: VNode) => (Record<string, unknown> | null | void),
   options: IterationOptions
 ): VNodeChild => {
   if (isFragment(child)) {
