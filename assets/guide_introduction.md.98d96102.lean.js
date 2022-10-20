@@ -1,1 +1,0 @@
-import{_ as s,o as n,c as a,a as o}from"./app.31c728b8.js";const u=JSON.parse('{"title":"What is vue-vnode-utils?","description":"","frontmatter":{},"headers":[],"relativePath":"guide/introduction.md"}'),e={name:"guide/introduction.md"},l=o("",17),p=[l];function t(r,c,i,F,y,D){return n(),a("div",null,p)}const h=s(e,[["render",t]]);export{u as __pageData,h as default};

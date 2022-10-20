@@ -1,1 +1,0 @@
-import{_ as e,o as s,c as n,a}from"./app.31c728b8.js";const A=JSON.parse('{"title":"Inserting new nodes","description":"","frontmatter":{},"headers":[],"relativePath":"guide/inserting-new-nodes.md"}'),o={name:"guide/inserting-new-nodes.md"},t=a("",8),l=[t];function r(p,i,c,d,D,h){return s(),n("div",null,l)}const f=e(o,[["render",r]]);export{A as __pageData,f as default};

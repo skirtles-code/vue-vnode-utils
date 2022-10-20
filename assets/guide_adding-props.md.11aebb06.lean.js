@@ -1,1 +1,0 @@
-import{_ as s,o as n,c as a,a as e}from"./app.31c728b8.js";const A=JSON.parse('{"title":"Adding props","description":"","frontmatter":{},"headers":[],"relativePath":"guide/adding-props.md"}'),o={name:"guide/adding-props.md"},l=e("",13),p=[l];function t(r,c,i,d,D,F){return n(),a("div",null,p)}const C=s(o,[["render",t]]);export{A as __pageData,C as default};
