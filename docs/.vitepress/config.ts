@@ -75,7 +75,10 @@ export default defineConfigWithTheme({
         items: [
           {
             text: 'Some notes on VNodes',
-            link: '/guide/some-notes-on-vnodes.md'
+            link: '/guide/some-notes-on-vnodes.html'
+          }, {
+            text: 'VNode manipulation and components',
+            link: '/guide/vnode-manipulation-and-components.html'
           }
         ]
       }
