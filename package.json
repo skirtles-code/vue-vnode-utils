@@ -1,8 +1,10 @@
 {
   "name": "@skirtle/vue-vnode-utils",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "skirtle",
   "license": "MIT",
+  "description": "Utilities for manipulating Vue 3 VNodes",
+  "keywords": ["vue", "vuejs", "vue3", "vnode", "vnodes", "vdom", "render", "slot", "slots"],
   "homepage": "https://skirtles-code.github.io/vue-vnode-utils/",
   "bugs": "https://github.com/skirtles-code/vue-vnode-utils/issues",
   "repository": "github:skirtles-code/vue-vnode-utils",
