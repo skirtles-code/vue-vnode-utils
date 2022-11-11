@@ -18,9 +18,9 @@ Adds props to 'top-level' element and component VNodes in the passed array. Node
 
 The [`options`](#iterationoptions) object can be set to `{ component: true }` or `{ element: true }` to limit iteration to just components or elements respectively.
 
-Eligible VNodes will be passed to the provided callback. The callback should return an object containing props that need to be added to the VNode. The VNode itself will not be changed, it will be cloned using Vue's built-in `cloneVNode` helper.
+Eligible VNodes will be passed to the provided callback. The callback should return an object containing props that need to be added to the VNode. The VNode itself will not be changed, it will be cloned using Vue's built-in `cloneVNode()` helper. Any ancestor fragment nodes will be cloned as required.
 
-A new array of VNodes is returned.
+The passed array will not be modified, but if no changes were required then the same array may be returned.
 
 ### See also
 
@@ -53,7 +53,7 @@ If the callback returns `null` or `undefined` (or an empty array) then no change
 
 The exact position of the newly inserted nodes within the tree is an implementation detail and should not be relied upon. The current pair of nodes might be in different fragments, or they might already have other nodes between them that are being skipped by the `options`. No guarantees are made about the positions of the inserted nodes relative to other nodes, only that they will be somewhere between the pair passed to the callback.
 
-A new array will be returned and the passed array and its contents should be left unmodified. Any fragment nodes will be cloned as required to avoid mutating the input nodes. The returned array may contain some of the same nodes as the input array, as nodes are not cloned in cases where it can be avoided.
+The passed array and its contents will be left unmodified. Any fragment nodes will be cloned as required to avoid mutating the input nodes. The returned array may contain some of the same nodes as the input array, as nodes are not cloned in cases where it can be avoided. If no nodes are inserted then the original array may be returned.
 
 ### See also
 
@@ -399,7 +399,7 @@ The callback will be passed the VNodes in tree order. If any of the children are
 
 If the callback returns `null` or `undefined`, the current node will be left in its current position in the VNode tree. If the callback returns a single VNode, it will replace the original VNode in the tree. If the callback returns an array, all the VNodes in the array will be used to replace the current node. The current VNode can be included in the returned array, allowing for nodes to be added around the current node. An empty array can be used to remove the current VNode.
 
-A new array will be returned and the passed array and its contents should be left unmodified. Any fragment nodes will be cloned as required to avoid mutating the input nodes. The returned array may contain some of the same nodes of the input array, as nodes are not cloned in cases where it can be avoided.
+The passed array and its contents will be left unmodified. Any fragment nodes will be cloned as required to avoid mutating the input nodes. The returned array may contain some of the same nodes of the input array, as nodes are not cloned in cases where it can be avoided. If no changes are required then the original array may be returned.
 
 ### See also
 

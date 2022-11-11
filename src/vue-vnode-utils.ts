@@ -164,18 +164,6 @@ const getFragmentChildren = (fragmentVNode: VNode | VNodeArrayChildren): VNodeAr
   return []
 }
 
-const setFragmentChildren = (fragment: VNode | VNodeArrayChildren, children: VNodeArrayChildren): (VNode | VNodeArrayChildren) => {
-  if (Array.isArray(fragment)) {
-    return children
-  }
-
-  const newNode = cloneVNode(fragment)
-
-  newNode.children = children
-
-  return newNode
-}
-
 export type IterationOptions = {
   element?: boolean
   component?: boolean
@@ -232,23 +220,7 @@ export const addProps = (
     checkArguments('addProps', [children, callback, options], ['array', 'function', 'object'])
   }
 
-  return children.map(child => addPropsToChild(child, callback, options))
-}
-
-const addPropsToChild = (
-  child: VNodeChild,
-  callback: (vnode: VNode) => (Record<string, unknown> | null | void),
-  options: IterationOptions
-): VNodeChild => {
-  if (isFragment(child)) {
-    const newChildren = addProps(getFragmentChildren(child), callback, options)
-
-    return setFragmentChildren(child, newChildren)
-  }
-
-  const vnode = promoteToVNode(child, options)
-
-  if (vnode) {
+  return replaceChildren(children, (vnode) => {
     const props = callback(vnode)
 
     if (DEV) {
@@ -262,9 +234,7 @@ const addPropsToChild = (
     if (props && !isEmptyObject(props)) {
       return cloneVNode(vnode, props)
     }
-  }
-
-  return child
+  }, options)
 }
 
 export const replaceChildren = (
@@ -276,13 +246,30 @@ export const replaceChildren = (
     checkArguments('replaceChildren', [children, callback, options], ['array', 'function', 'object'])
   }
 
-  const nc: VNodeArrayChildren = []
+  let nc: VNodeArrayChildren | null = null
 
-  for (const child of children) {
+  for (let index = 0; index < children.length; ++index) {
+    const child = children[index]
+
     if (isFragment(child)) {
-      const newChildren = replaceChildren(getFragmentChildren(child), callback, options)
+      const oldFragmentChildren = getFragmentChildren(child)
+      const newFragmentChildren = replaceChildren(oldFragmentChildren, callback, options)
 
-      nc.push(setFragmentChildren(child, newChildren))
+      let newChild: VNodeChild = child
+
+      if (oldFragmentChildren !== newFragmentChildren) {
+        nc ??= children.slice(0, index)
+
+        if (Array.isArray(child)) {
+          newChild = newFragmentChildren
+        } else {
+          newChild = cloneVNode(child)
+
+          newChild.children = newFragmentChildren
+        }
+      }
+
+      nc && nc.push(newChild)
     } else {
       const vnode = promoteToVNode(child, options)
 
@@ -297,18 +284,22 @@ export const replaceChildren = (
           }
         }
 
+        if (newNodes !== child) {
+          nc ??= children.slice(0, index)
+        }
+
         if (Array.isArray(newNodes)) {
-          nc.push(...newNodes)
+          nc && nc.push(...newNodes)
         } else {
-          nc.push(newNodes)
+          nc && nc.push(newNodes)
         }
       } else {
-        nc.push(child)
+        nc && nc.push(child)
       }
     }
   }
 
-  return nc
+  return nc ?? children
 }
 
 export const betweenChildren = (
