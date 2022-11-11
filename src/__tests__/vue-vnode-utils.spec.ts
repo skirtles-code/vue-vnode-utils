@@ -224,10 +224,12 @@ describe('addProps', () => {
     expect(child.type).toBe('div')
     expect(child.props?.class).toBe('red')
 
-    // TODO
-    // expect(startNodes.length).toBe(1)
-    // expect(startNodes[0]).toBe(startNode)
-    // expect(startNode.props).toBe(null)
+    expect(startNodes.length).toBe(1)
+    expect(startNodes[0]).toBe(fragNode)
+    expect(fragNode.props).toBe(null)
+    expect(fragNode.children?.length).toBe(1)
+    expect((fragNode.children as VNodeArrayChildren)[0]).toBe(divNode)
+    expect(divNode.props).toBe(null)
   })
 
   it('addProps - 3de9', () => {
@@ -380,14 +382,9 @@ describe('addProps', () => {
     compareChildren(nullNodes, referenceNodes)
     compareChildren(emptyNodes, referenceNodes)
 
-    expect(undefinedNodes[0]).toBe(startNodes[0])
-    expect(undefinedNodes[1]).toBe(startNodes[1])
-
-    expect(nullNodes[0]).toBe(startNodes[0])
-    expect(nullNodes[1]).toBe(startNodes[1])
-
-    expect(emptyNodes[0]).toBe(startNodes[0])
-    expect(emptyNodes[1]).toBe(startNodes[1])
+    expect(undefinedNodes).toBe(startNodes)
+    expect(nullNodes).toBe(startNodes)
+    expect(emptyNodes).toBe(startNodes)
   })
 
   it('addProps - a934', () => {
@@ -428,6 +425,33 @@ describe('addProps', () => {
     expect((nodes[0] as VNode).props?.class).toBe(undefined)
     expect((nodes[1] as VNode).props?.class).toBe('red')
   })
+
+  it('addProps - 510f', () => {
+    let count = 0
+
+    const spanNode = h('span')
+    const fragment = [spanNode]
+    const startNodes = [h('div'), fragment]
+
+    const nodes = addProps(startNodes, (vnode) => {
+      count++
+
+      if (vnode.type === 'div') {
+        return {
+          class: 'red'
+        }
+      }
+    })
+
+    expect(count).toBe(2)
+
+    expect(nodes.length).toBe(2)
+    expect((nodes[0] as VNode).props?.class).toBe('red')
+    expect(nodes[1]).toBe(fragment)
+    expect(fragment.length).toBe(1)
+    expect(fragment[0]).toBe(spanNode)
+    expect(spanNode.props).toBe(null)
+  })
 })
 
 describe('replaceChildren', () => {
@@ -450,9 +474,9 @@ describe('replaceChildren', () => {
     expect(count).toBe(1)
     expect(Array.isArray(nodes)).toBe(true)
     expect(nodes).toHaveLength(1)
+    expect(nodes).toBe(startNodes)
 
     compareChildren(startNodes, [h('div')])
-    compareChildren(nodes, [h('div')])
   })
 
   it('replaceChildren - 7c8a', () => {
@@ -476,6 +500,7 @@ describe('replaceChildren', () => {
     expect(nodes).toHaveLength(0)
 
     compareChildren(startNodes, [h('div')])
+    expect(startNodes[0]).toBe(startNode)
   })
 
   it('replaceChildren - 1d16', () => {
@@ -601,6 +626,37 @@ describe('replaceChildren', () => {
     compareChildren(startNodes, [h('div'), 'Text', [h('span'), 'More text']])
     compareChildren(nodes, [h('div'), '(Text)', [h('span'), '(More text)']])
   })
+
+  it('replaceChildren - e076', () => {
+    let count = 0
+
+    const startNodes = ['Text']
+
+    const nodes = replaceChildren(startNodes, () => {
+      count++
+    })
+
+    expect(count).toBe(1)
+    expect(Array.isArray(nodes)).toBe(true)
+    expect(nodes).toHaveLength(1)
+    expect(isVNode(nodes[0])).toBe(true)
+
+    expect(startNodes).toHaveLength(1)
+    expect(startNodes[0]).toBe('Text')
+
+    // Do the same thing with a text VNode
+    const startVNodes = [createTextVNode('Text')]
+
+    count = 0
+
+    const nodesOut = replaceChildren(startVNodes, () => {
+      count++
+    })
+
+    expect(count).toBe(1)
+    expect(nodesOut).toBe(startVNodes)
+    expect(nodesOut).toHaveLength(1)
+  })
 })
 
 describe('betweenChildren', () => {
@@ -615,17 +671,11 @@ describe('betweenChildren', () => {
     })
 
     expect(count).toBe(0)
-    expect(Array.isArray(nodes)).toBe(true)
-    expect(nodes.length).toBe(1)
+    expect(nodes).toBe(startNodes)
 
-    const node = nodes[0] as VNode
-
-    expect(isElement(node)).toBe(true)
-    expect(node.type).toBe('div')
-    expect(node.props).toBe(null)
-
-    expect(startNodes.length).toBe(1)
+    expect(startNodes).toHaveLength(1)
     expect(startNodes[0]).toBe(startNode)
+    expect(startNode.type).toBe('div')
     expect(startNode.props).toBe(null)
   })
 
@@ -649,10 +699,8 @@ describe('betweenChildren', () => {
     })
 
     expect(count).toBe(1)
-    expect(Array.isArray(nodes)).toBe(true)
-    expect(nodes.length).toBe(2)
+    expect(nodes).toBe(startNodes)
 
-    compareChildren(nodes, [h('div'), h('span')])
     compareChildren(startNodes, [h('div'), h('span')])
   })
 
@@ -677,10 +725,8 @@ describe('betweenChildren', () => {
     })
 
     expect(count).toBe(1)
-    expect(Array.isArray(nodes)).toBe(true)
-    expect(nodes.length).toBe(2)
+    expect(nodes).toBe(startNodes)
 
-    compareChildren(nodes, [h('div'), h('span')])
     compareChildren(startNodes, [h('div'), h('span')])
   })
 
@@ -1170,6 +1216,32 @@ describe('betweenChildren', () => {
         ]
       ]
     ])
+  })
+
+  it('betweenChildren - 2bea', () => {
+    let count = 0
+
+    const startNodes = [['Text'], [createTextVNode('Text')]]
+
+    const nodes = betweenChildren(startNodes, (before, after) => {
+      count++
+
+      expect(isVNode(before)).toBe(true)
+      expect(isVNode(after)).toBe(true)
+
+      expect(getText(before)).toBe('Text')
+      expect(getText(after)).toBe('Text')
+    })
+
+    expect(count).toBe(1)
+
+    expect(nodes).toHaveLength(2)
+    expect(Array.isArray(nodes[0])).toBe(true)
+    expect(nodes[0]).toHaveLength(1)
+    expect(isVNode((nodes[0] as VNodeArrayChildren)[0])).toBe(true)
+    expect(nodes[1]).toBe(startNodes[1])
+
+    expect(startNodes[0][0]).toBe('Text')
   })
 })
 
