@@ -232,7 +232,7 @@ export const addProps = (
     }
 
     if (props && !isEmptyObject(props)) {
-      return cloneVNode(vnode, props)
+      return cloneVNode(vnode, props, true)
     }
   }, options)
 }
