@@ -126,36 +126,6 @@ function compareNode(vnode: VNode, expectation: VNode) {
   compareChildren([].concat(vnode.children as any), [].concat(expectation.children as any))
 }
 
-describe('isElement', () => {
-  it('isElement - 36bc', () => {
-    const elNode = h('div')
-    const cmpNode = h({ render (){} })
-    const fnCmpNode = h(() => {})
-    const commentNode = createCommentVNode('Comment')
-    const textNode = createTextVNode('Some text')
-    const fragmentNode = createVNode(Fragment, null, [elNode])
-
-    expect(isElement(elNode)).toBe(true)
-
-    expect(isElement(null)).toBe(false)
-    expect(isElement(undefined)).toBe(false)
-    expect(isElement(false)).toBe(false)
-    expect(isElement(true)).toBe(false)
-    expect(isElement(0)).toBe(false)
-    expect(isElement(1)).toBe(false)
-    expect(isElement('')).toBe(false)
-    expect(isElement('string')).toBe(false)
-    expect(isElement([])).toBe(false)
-    expect(isElement({})).toBe(false)
-
-    expect(isElement(cmpNode)).toBe(false)
-    expect(isElement(fnCmpNode)).toBe(false)
-    expect(isElement(commentNode)).toBe(false)
-    expect(isElement(textNode)).toBe(false)
-    expect(isElement(fragmentNode)).toBe(false)
-  })
-})
-
 describe('addProps', () => {
   it('addProps - 0836', () => {
     let count = 0
@@ -1660,7 +1630,9 @@ describe('isElement', () => {
     expect(isElement(h(defineAsyncComponent(() => Promise.resolve({}))))).toBe(false)
     expect(isElement(createTextVNode('Text'))).toBe(false)
     expect(isElement(createCommentVNode('Text'))).toBe(false)
+    expect(isElement(createVNode(Fragment, null, [h('div')]))).toBe(false)
     expect(isElement('')).toBe(false)
+    expect(isElement('string')).toBe(false)
     expect(isElement({})).toBe(false)
     expect(isElement([])).toBe(false)
     expect(isElement(null)).toBe(false)
@@ -1685,6 +1657,7 @@ describe('isFragment', () => {
     expect(isFragment(createTextVNode('Text'))).toBe(false)
     expect(isFragment(createCommentVNode('Text'))).toBe(false)
     expect(isFragment('')).toBe(false)
+    expect(isFragment('string')).toBe(false)
     expect(isFragment({})).toBe(false)
     expect(isFragment(null)).toBe(false)
     expect(isFragment(undefined)).toBe(false)
@@ -1698,6 +1671,7 @@ describe('isFragment', () => {
 describe('isText', () => {
   it('isText - 7952', () => {
     expect(isText('')).toBe(true)
+    expect(isText('string')).toBe(true)
     expect(isText(0)).toBe(true)
     expect(isText(7)).toBe(true)
     expect(isText(createTextVNode('Text'))).toBe(true)
@@ -1731,6 +1705,7 @@ describe('isStatic', () => {
     expect(isStatic(createCommentVNode('Text'))).toBe(false)
     expect(isStatic(createVNode(Fragment, null, []))).toBe(false)
     expect(isStatic('')).toBe(false)
+    expect(isStatic('string')).toBe(false)
     expect(isStatic({})).toBe(false)
     expect(isStatic([])).toBe(false)
     expect(isStatic(null)).toBe(false)
@@ -1773,6 +1748,7 @@ describe('getType', () => {
     expect(getType(createVNode(Fragment, null, []))).toBe('fragment')
     expect(getType(createStaticVNode('<div></div>', 1))).toBe('static')
     expect(getType('')).toBe('text')
+    expect(getType('string')).toBe('text')
     expect(getType({})).toBe(undefined)
     expect(getType([])).toBe('fragment')
     expect(getType(null)).toBe('comment')
