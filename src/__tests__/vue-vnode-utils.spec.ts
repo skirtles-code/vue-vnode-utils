@@ -550,7 +550,7 @@ describe('replaceChildren', () => {
   })
 
   it('replaceChildren - 5233', () => {
-    const calledFor: VNode[] = []
+    let count = 0
 
     const startNodes = [
       createTree([
@@ -571,11 +571,12 @@ describe('replaceChildren', () => {
     ]
 
     const nodes = replaceChildren(startNodes, (vnode) => {
-      calledFor.push(vnode)
+      count++
 
       return h('section', null, [vnode])
     })
 
+    expect(count).toBe(4)
     expect(Array.isArray(nodes)).toBe(true)
     expect(nodes).toHaveLength(2)
 
