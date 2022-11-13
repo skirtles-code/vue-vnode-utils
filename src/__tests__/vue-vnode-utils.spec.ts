@@ -77,7 +77,7 @@ function toVNode(node: VNodeChild): VNode {
 }
 
 function compareChildren(vnodes: VNodeArrayChildren, expectation: VNodeArrayChildren) {
-  expect(vnodes.length).toBe(expectation.length)
+  expect(vnodes).toHaveLength(expectation.length)
 
   for (let index = 0; index < Math.min(vnodes.length, expectation.length); ++index) {
     compareNode(toVNode(vnodes[index]), toVNode(expectation[index]))
@@ -176,7 +176,7 @@ describe('addProps', () => {
 
     expect(count).toBe(1)
     expect(Array.isArray(nodes)).toBe(true)
-    expect(nodes.length).toBe(1)
+    expect(nodes).toHaveLength(1)
 
     const node = nodes[0] as VNode
 
@@ -184,7 +184,7 @@ describe('addProps', () => {
     expect(node.type).toBe('div')
     expect(node.props?.class).toBe('red')
 
-    expect(startNodes.length).toBe(1)
+    expect(startNodes).toHaveLength(1)
     expect(startNodes[0]).toBe(startNode)
     expect(startNode.props).toBe(null)
   })
@@ -210,13 +210,13 @@ describe('addProps', () => {
 
     expect(count).toBe(1)
     expect(Array.isArray(nodes)).toBe(true)
-    expect(nodes.length).toBe(1)
+    expect(nodes).toHaveLength(1)
 
     const node = nodes[0] as VNode
 
     expect(isFragment(node)).toBe(true)
     expect(Array.isArray(node.children)).toBe(true)
-    expect(node.children?.length).toBe(1)
+    expect(node.children).toHaveLength(1)
 
     const child = (node.children as VNode[])[0]
 
@@ -224,10 +224,10 @@ describe('addProps', () => {
     expect(child.type).toBe('div')
     expect(child.props?.class).toBe('red')
 
-    expect(startNodes.length).toBe(1)
+    expect(startNodes).toHaveLength(1)
     expect(startNodes[0]).toBe(fragNode)
     expect(fragNode.props).toBe(null)
-    expect(fragNode.children?.length).toBe(1)
+    expect(fragNode.children).toHaveLength(1)
     expect((fragNode.children as VNodeArrayChildren)[0]).toBe(divNode)
     expect(divNode.props).toBe(null)
   })
@@ -261,7 +261,7 @@ describe('addProps', () => {
       }
     })
 
-    expect(calledFor.length).toBe(3)
+    expect(calledFor).toHaveLength(3)
     expect(calledFor.every(node => isVNode(node))).toBe(true)
     expect(calledFor[0].type).toBe('div')
     expect(calledFor[1].type).toBe('span')
@@ -332,7 +332,7 @@ describe('addProps', () => {
       }
     })
 
-    expect(calledFor.length).toBe(6)
+    expect(calledFor).toHaveLength(6)
     expect(calledFor.every(node => isVNode(node))).toBe(true)
     expect(calledFor[0].type).toBe('p')
     expect(calledFor[1].type).toMatchObject({ template: 'abc' })
@@ -404,7 +404,7 @@ describe('addProps', () => {
 
     expect(count).toBe(2)
 
-    expect(nodes.length).toBe(3)
+    expect(nodes).toHaveLength(3)
     expect((nodes[0] as VNode).props?.class).toBe('red')
     expect((nodes[1] as VNode).props?.class).toBe(undefined)
 
@@ -421,7 +421,7 @@ describe('addProps', () => {
 
     expect(count).toBe(2)
 
-    expect(nodes.length).toBe(3)
+    expect(nodes).toHaveLength(3)
     expect((nodes[0] as VNode).props?.class).toBe(undefined)
     expect((nodes[1] as VNode).props?.class).toBe('red')
   })
@@ -445,10 +445,10 @@ describe('addProps', () => {
 
     expect(count).toBe(2)
 
-    expect(nodes.length).toBe(2)
+    expect(nodes).toHaveLength(2)
     expect((nodes[0] as VNode).props?.class).toBe('red')
     expect(nodes[1]).toBe(fragment)
-    expect(fragment.length).toBe(1)
+    expect(fragment).toHaveLength(1)
     expect(fragment[0]).toBe(spanNode)
     expect(spanNode.props).toBe(null)
   })
@@ -751,7 +751,7 @@ describe('betweenChildren', () => {
 
     expect(count).toBe(1)
     expect(Array.isArray(nodes)).toBe(true)
-    expect(nodes.length).toBe(3)
+    expect(nodes).toHaveLength(3)
 
     compareChildren(nodes, [h('div'), h('p'), h('span')])
     compareChildren(startNodes, [h('div'), h('span')])
@@ -778,7 +778,7 @@ describe('betweenChildren', () => {
 
     expect(count).toBe(1)
     expect(Array.isArray(nodes)).toBe(true)
-    expect(nodes.length).toBe(4)
+    expect(nodes).toHaveLength(4)
 
     compareChildren(nodes, [h('div'), 'hello', h('strong', null,['world']), h('span')])
     compareChildren(startNodes, [h('div'), h('span')])
@@ -814,7 +814,7 @@ describe('betweenChildren', () => {
 
     expect(count).toBe(5)
     expect(Array.isArray(nodes)).toBe(true)
-    expect(nodes.length).toBe(14)
+    expect(nodes).toHaveLength(14)
 
     compareChildren(startNodes, getStartNodes())
 
@@ -872,7 +872,7 @@ describe('betweenChildren', () => {
 
     expect(count).toBe(8)
     expect(Array.isArray(nodes)).toBe(true)
-    expect(nodes.length).toBe(17)
+    expect(nodes).toHaveLength(17)
 
     compareChildren(startNodes, getStartNodes())
 
@@ -932,7 +932,7 @@ describe('betweenChildren', () => {
 
     expect(count).toBe(1)
     expect(Array.isArray(nodes)).toBe(true)
-    expect(nodes.length).toBe(9)
+    expect(nodes).toHaveLength(9)
 
     compareChildren(startNodes, getStartNodes())
 
@@ -983,7 +983,7 @@ describe('betweenChildren', () => {
 
     expect(count).toBe(1)
     expect(Array.isArray(nodes)).toBe(true)
-    expect(nodes.length).toBe(10)
+    expect(nodes).toHaveLength(10)
 
     compareChildren(startNodes, getStartNodes())
 
@@ -1038,7 +1038,7 @@ describe('betweenChildren', () => {
 
     expect(count).toBe(1)
     expect(Array.isArray(nodes)).toBe(true)
-    expect(nodes.length).toBe(10)
+    expect(nodes).toHaveLength(10)
 
     compareChildren(startNodes, getStartNodes())
 
@@ -1090,7 +1090,7 @@ describe('betweenChildren', () => {
 
     expect(count).toBe(1)
     expect(Array.isArray(nodes)).toBe(true)
-    expect(nodes.length).toBe(10)
+    expect(nodes).toHaveLength(10)
 
     compareChildren(startNodes, getStartNodes())
 
@@ -1139,7 +1139,7 @@ describe('betweenChildren', () => {
 
     expect(count).toBe(1)
     expect(Array.isArray(nodes)).toBe(true)
-    expect(nodes.length).toBe(3)
+    expect(nodes).toHaveLength(3)
 
     compareChildren(startNodes, getStartNodes())
 
@@ -1188,7 +1188,7 @@ describe('betweenChildren', () => {
 
     expect(count).toBe(6)
     expect(Array.isArray(nodes)).toBe(true)
-    expect(nodes.length).toBe(2)
+    expect(nodes).toHaveLength(2)
 
     compareChildren(startNodes, getStartNodes())
 
@@ -1293,7 +1293,7 @@ describe('someChild', () => {
     })
 
     expect(out).toBe(false)
-    expect(calledFor.length).toBe(4)
+    expect(calledFor).toHaveLength(4)
     expect(calledFor[0]).toBe(startNodes[0])
     expect(calledFor[1]).toBe((startNodes[1].children as VNode[])[0])
     expect(calledFor[2]).toBe((startNodes[1].children as VNode[])[1])
@@ -1308,7 +1308,7 @@ describe('someChild', () => {
     })
 
     expect(out).toBe(true)
-    expect(calledFor.length).toBe(3)
+    expect(calledFor).toHaveLength(3)
     expect(calledFor[0]).toBe(startNodes[0])
     expect(calledFor[1]).toBe((startNodes[1].children as VNode[])[0])
     expect(calledFor[2]).toBe((startNodes[1].children as VNode[])[1])
@@ -1322,7 +1322,7 @@ describe('someChild', () => {
     })
 
     expect(out).toBe(true)
-    expect(calledFor.length).toBe(2)
+    expect(calledFor).toHaveLength(2)
     expect(calledFor[0]).toBe(startNodes[0])
     expect(calledFor[1]).toBe((startNodes[1].children as VNode[])[0])
   })
@@ -1339,7 +1339,7 @@ describe('someChild', () => {
       return false
     }, ALL_VNODES)
 
-    expect(calledFor.length).toBe(7)
+    expect(calledFor).toHaveLength(7)
 
     calledFor.length = 0
 
@@ -1349,7 +1349,7 @@ describe('someChild', () => {
       return false
     }, SKIP_COMMENTS)
 
-    expect(calledFor.length).toBe(6)
+    expect(calledFor).toHaveLength(6)
 
     calledFor.length = 0
 
@@ -1359,7 +1359,7 @@ describe('someChild', () => {
       return false
     }, COMPONENTS_AND_ELEMENTS)
 
-    expect(calledFor.length).toBe(4)
+    expect(calledFor).toHaveLength(4)
 
     calledFor.length = 0
 
@@ -1369,7 +1369,7 @@ describe('someChild', () => {
       return false
     }, { component: true })
 
-    expect(calledFor.length).toBe(1)
+    expect(calledFor).toHaveLength(1)
 
     calledFor.length = 0
 
@@ -1379,7 +1379,7 @@ describe('someChild', () => {
       return false
     }, {})
 
-    expect(calledFor.length).toBe(0)
+    expect(calledFor).toHaveLength(0)
 
     calledFor.length = 0
 
@@ -1389,7 +1389,7 @@ describe('someChild', () => {
       return false
     }, { comment: true })
 
-    expect(calledFor.length).toBe(1)
+    expect(calledFor).toHaveLength(1)
 
     calledFor.length = 0
 
@@ -1399,7 +1399,7 @@ describe('someChild', () => {
       return false
     }, { text: true })
 
-    expect(calledFor.length).toBe(2)
+    expect(calledFor).toHaveLength(2)
 
     calledFor.length = 0
 
@@ -1409,7 +1409,7 @@ describe('someChild', () => {
       return false
     }, { element: true })
 
-    expect(calledFor.length).toBe(3)
+    expect(calledFor).toHaveLength(3)
   })
 })
 
@@ -1426,7 +1426,7 @@ describe('everyChild', () => {
     })
 
     expect(out).toBe(true)
-    expect(calledFor.length).toBe(4)
+    expect(calledFor).toHaveLength(4)
     expect(calledFor[0].type).toBe('a')
     expect(calledFor[1].type).toBe('div')
     expect(calledFor[2].type).toBe('span')
@@ -1441,7 +1441,7 @@ describe('everyChild', () => {
     })
 
     expect(out).toBe(false)
-    expect(calledFor.length).toBe(2)
+    expect(calledFor).toHaveLength(2)
     expect(calledFor[0].type).toBe('a')
     expect(calledFor[1].type).toBe('div')
   })
@@ -1462,7 +1462,7 @@ describe('eachChild', () => {
     })
 
     expect(out).toBe(undefined)
-    expect(calledFor.length).toBe(4)
+    expect(calledFor).toHaveLength(4)
     expect(calledFor[0]).toBe(startNodes[0])
     expect(isText(calledFor[1]) && getText(calledFor[1])).toBe('Text')
     expect(calledFor[2].type).toBe('span')
@@ -1483,7 +1483,7 @@ describe('findChild', () => {
     })
 
     expect(out).toBe(undefined)
-    expect(calledFor.length).toBe(4)
+    expect(calledFor).toHaveLength(4)
     expect(calledFor[0]).toBe(startNodes[0])
     expect(isText(calledFor[1]) && getText(calledFor[1])).toBe('Text')
     expect(calledFor[2].type).toBe('span')
@@ -1498,7 +1498,7 @@ describe('findChild', () => {
     })
 
     expect(out?.type).toBe('span')
-    expect(calledFor.length).toBe(3)
+    expect(calledFor).toHaveLength(3)
     expect(calledFor[0]).toBe(startNodes[0])
     expect(isText(calledFor[1]) && getText(calledFor[1])).toBe('Text')
     expect(calledFor[2].type).toBe('span')
