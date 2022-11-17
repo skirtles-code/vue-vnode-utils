@@ -172,24 +172,33 @@ export type IterationOptions = {
   static?: boolean
 }
 
-export const ALL_VNODES: IterationOptions = Object.freeze({
-  element: true,
-  component: true,
-  comment: true,
-  text: true,
-  static: true
-})
+// esbuild can remove an identity function, so long as it uses a function declaration
+function freeze<T>(obj: T): T {
+  if (DEV) {
+    return Object.freeze(obj)
+  }
 
-export const COMPONENTS_AND_ELEMENTS: IterationOptions = Object.freeze({
+  return obj
+}
+
+export const COMPONENTS_AND_ELEMENTS: IterationOptions = /*#__PURE__*/ freeze({
   element: true,
   component: true
 })
 
-export const SKIP_COMMENTS: IterationOptions = Object.freeze({
+export const SKIP_COMMENTS: IterationOptions = /*#__PURE__*/ freeze({
   element: true,
   component: true,
   text: true,
   static: true
+})
+
+export const ALL_VNODES: IterationOptions = /*#__PURE__*/ freeze({
+  element: true,
+  component: true,
+  text: true,
+  static: true,
+  comment: true
 })
 
 const promoteToVNode = (node: VNode | string | number | boolean | null | undefined | void, options: IterationOptions): VNode | null => {
