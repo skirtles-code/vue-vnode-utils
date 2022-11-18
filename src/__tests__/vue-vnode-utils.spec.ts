@@ -10,6 +10,7 @@ import {
   Fragment,
   h,
   isVNode,
+  ref,
   Text,
   type VNode,
   type VNodeArrayChildren,
@@ -421,6 +422,49 @@ describe('addProps', () => {
     expect(fragment).toHaveLength(1)
     expect(fragment[0]).toBe(spanNode)
     expect(spanNode.props).toBe(null)
+  })
+
+  it('addProps - 8259', () => {
+    let count = 0
+
+    const spanRef = ref()
+    const otherRef = ref()
+    const spanNode = h('span', { ref: spanRef, class: 'bold', style: 'color: red' })
+    const startNodes = [spanNode]
+
+    const nodes = addProps(startNodes, () => {
+      count++
+
+      return {
+        ref: otherRef,
+        class: 'large',
+        style: 'line-height: 1'
+      }
+    })
+
+    expect(count).toBe(1)
+
+    expect(nodes).toHaveLength(1)
+
+    const newNode = nodes[0] as VNode
+    const props = newNode.props
+
+    expect(props?.class).toBe('bold large')
+    expect(props?.style.color).toBe('red')
+    expect(props?.style['line-height']).toBe('1')
+
+    const mergedRef = newNode.ref
+
+    expect(Array.isArray(mergedRef)).toBe(true)
+    expect(mergedRef).toHaveLength(2)
+
+    // Keep TS happy...
+    if (Array.isArray(mergedRef)) {
+      const refs = mergedRef.map(({ r }) => r)
+
+      expect(refs.includes(spanRef)).toBe(true)
+      expect(refs.includes(otherRef)).toBe(true)
+    }
   })
 })
 
