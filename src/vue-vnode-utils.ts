@@ -220,7 +220,7 @@ export const addProps = (
     checkArguments('addProps', [children, callback, options], ['array', 'function', 'object'])
   }
 
-  return replaceChildren(children, (vnode) => {
+  return replaceChildrenInternal(children, (vnode) => {
     const props = callback(vnode)
 
     if (DEV) {
@@ -246,6 +246,14 @@ export const replaceChildren = (
     checkArguments('replaceChildren', [children, callback, options], ['array', 'function', 'object'])
   }
 
+  return replaceChildrenInternal(children, callback, options)
+}
+
+const replaceChildrenInternal = (
+  children: VNodeArrayChildren,
+  callback: (vnode: VNode) => (VNode | VNodeArrayChildren | string | number | void),
+  options: IterationOptions
+): VNodeArrayChildren => {
   let nc: VNodeArrayChildren | null = null
 
   for (let index = 0; index < children.length; ++index) {
@@ -253,7 +261,7 @@ export const replaceChildren = (
 
     if (isFragment(child)) {
       const oldFragmentChildren = getFragmentChildren(child)
-      const newFragmentChildren = replaceChildren(oldFragmentChildren, callback, options)
+      const newFragmentChildren = replaceChildrenInternal(oldFragmentChildren, callback, options)
 
       let newChild: VNodeChild = child
 
@@ -313,7 +321,7 @@ export const betweenChildren = (
 
   let previousVNode: VNode | null = null
 
-  return replaceChildren(children, vnode => {
+  return replaceChildrenInternal(children, vnode => {
     let insertedNodes: VNode | VNodeArrayChildren | string | number | void = undefined
 
     if (previousVNode) {
