@@ -63,7 +63,7 @@ We can see a similar approach being taken with the `<basic-accordion>` component
 
 For an accordion it makes sense for the panels to all be laid out as a vertical stack, but for a radio group we may want to use different layouts for the radio buttons. While this could potentially be handled by the `radio-group` itself, we might prefer to leave that to the consuming code. Perhaps we have a `row-layout` component we could use to group the buttons horizontally:
 
-```html
+```vue-html
 <radio-group>
   <row-layout>
     <radio-button ... />
