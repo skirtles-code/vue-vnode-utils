@@ -16,12 +16,16 @@ export default defineConfigWithTheme({
   },
 
   themeConfig: {
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/skirtles-code/vue-vnode-utils' }
-    ],
+    search: {
+      provider: 'local'
+    },
 
     nav: [
       { text: 'Guide', link: '/guide/introduction.html' }
+    ],
+
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/skirtles-code/vue-vnode-utils' }
     ],
 
     sidebar: [
