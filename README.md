@@ -65,4 +65,4 @@ Some browsers do not yet have full support for import maps.
 
 MIT
 
-Copyright &copy; 2022, skirtle
+Copyright &copy; 2022-2023, skirtle
