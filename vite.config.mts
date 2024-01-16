@@ -11,7 +11,8 @@ export default defineConfig(({ mode }) => {
   }
 
   const dtsPlugin = mode === 'neutral' ? dts({
-    copyDtsFiles: false
+    rollupTypes: true,
+    tsconfigPath: './tsconfig.app.json'
   }) : null
 
   return {
@@ -28,6 +29,7 @@ export default defineConfig(({ mode }) => {
       'process.env.NODE_ENV': JSON.stringify(mode)
     } : {},
     build: {
+      target: 'es2019',
       emptyOutDir: false,
       minify: mode === 'production',
       lib: {
