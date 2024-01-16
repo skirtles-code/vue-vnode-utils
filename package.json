@@ -7,7 +7,10 @@
   "keywords": ["vue", "vuejs", "vue3", "vnode", "vnodes", "vdom", "render", "slot", "slots"],
   "homepage": "https://skirtles-code.github.io/vue-vnode-utils/",
   "bugs": "https://github.com/skirtles-code/vue-vnode-utils/issues",
-  "repository": "github:skirtles-code/vue-vnode-utils",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skirtles-code/vue-vnode-utils.git"
+  },
   "sideEffects": false,
   "main": "dist/vue-vnode-utils.cjs",
   "module": "dist/vue-vnode-utils.esm-bundler.js",
