@@ -7,7 +7,7 @@
 ```ts
 function addProps(
   children: VNodeArrayChildren,
-  callback: (vnode: VNode) => (Record<string, any> | null | void),
+  callback: (vnode: VNode) => (Record<string, unknown> | null | void),
   options: IterationOptions = COMPONENTS_AND_ELEMENTS
 ): VNodeArrayChildren
 ```
@@ -179,7 +179,7 @@ Returns the text content of a text node. If the passed value is not a text node 
 ### Type
 
 ```ts
-function getType(vnode: any):
+function getType(vnode: unknown):
   'comment' |
   'component' |
   'element' |
@@ -204,7 +204,7 @@ If the passed value doesn't appear to be convertible to a VNode, the returned va
 ### Type
 
 ```ts
-function isComment(vnode: any): vnode is (null | undefined | boolean | (VNode & { type: typeof Comment }))
+function isComment(vnode: unknown): vnode is (null | undefined | boolean | (VNode & { type: typeof Comment }))
 ```
 
 ### Description
@@ -220,7 +220,7 @@ Returns `true` if the passed value is considered to be a comment. This could be 
 ### Type
 
 ```ts
-function isComponent(vnode: any): vnode is (VNode & { type: Component })
+function isComponent(vnode: unknown): vnode is (VNode & { type: Component })
 ```
 
 ### Description
@@ -238,7 +238,7 @@ Returns `true` if the passed value is a component VNode. This includes both stat
 ### Type
 
 ```ts
-function isElement(vnode: any): vnode is (VNode & { type: string })
+function isElement(vnode: unknown): vnode is (VNode & { type: string })
 ```
 
 ### Description
@@ -278,7 +278,7 @@ This helper is written using `someChild()`. If the exact criteria it uses to dec
 ### Type
 
 ```ts
-function isFragment(vnode: any): vnode is ((VNode & { type: typeof Fragment }) | VNodeArrayChildren)
+function isFragment(vnode: unknown): vnode is ((VNode & { type: typeof Fragment }) | VNodeArrayChildren)
 ```
 
 ### Description
@@ -294,7 +294,7 @@ Returns `true` if the passed value is considered a fragment. This could either b
 ### Type
 
 ```ts
-function isFunctionalComponent(vnode: any): vnode is (VNode & { type: FunctionalComponent })
+function isFunctionalComponent(vnode: unknown): vnode is (VNode & { type: FunctionalComponent })
 ```
 
 ### Description
@@ -312,7 +312,7 @@ Returns `true` if the passed value is a VNode for a [functional component](https
 ### Type
 
 ```ts
-function isStatefulComponent(vnode: any): vnode is (VNode & { type: ComponentOptions })
+function isStatefulComponent(vnode: unknown): vnode is (VNode & { type: ComponentOptions })
 ```
 
 ### Description
@@ -330,7 +330,7 @@ Returns `true` if the passed value is a VNode for a stateful (i.e. non-functiona
 ### Type
 
 ```ts
-function isStatic(vnode: any): vnode is (VNode & { type: typeof Static })
+function isStatic(vnode: unknown): vnode is (VNode & { type: typeof Static })
 ```
 
 ### Description
@@ -346,7 +346,7 @@ Returns `true` if the passed value is a static VNode. Static VNodes are a specia
 ### Type
 
 ```ts
-function isText(vnode: any): vnode is (string | number | (VNode & { type: typeof Text }))
+function isText(vnode: unknown): vnode is (string | number | (VNode & { type: typeof Text }))
 ```
 
 ### Description
