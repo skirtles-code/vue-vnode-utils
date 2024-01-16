@@ -204,7 +204,7 @@ If the passed value doesn't appear to be convertible to a VNode, the returned va
 ### Type
 
 ```ts
-function isComment(vnode: any): vnode is (null | undefined | boolean | (VNode & { type: Comment }))
+function isComment(vnode: any): vnode is (null | undefined | boolean | (VNode & { type: typeof Comment }))
 ```
 
 ### Description
@@ -346,7 +346,7 @@ Returns `true` if the passed value is a static VNode. Static VNodes are a specia
 ### Type
 
 ```ts
-function isText(vnode: any): vnode is (string | number | (VNode & { type: Text }))
+function isText(vnode: any): vnode is (string | number | (VNode & { type: typeof Text }))
 ```
 
 ### Description
