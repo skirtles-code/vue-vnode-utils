@@ -11,6 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/skirtles-code/vue-vnode-utils.git"
   },
+  "funding": "https://github.com/sponsors/skirtles-code",
   "sideEffects": false,
   "main": "dist/vue-vnode-utils.cjs",
   "module": "dist/vue-vnode-utils.esm-bundler.js",
