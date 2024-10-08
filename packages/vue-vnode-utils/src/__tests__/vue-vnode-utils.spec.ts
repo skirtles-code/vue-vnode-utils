@@ -39,7 +39,7 @@ import {
   replaceChildren,
   SKIP_COMMENTS,
   someChild
-} from '../vue-vnode-utils'
+} from '../index'
 
 type TreeNode = string | number | null | undefined | boolean | [string | typeof Fragment | Component, (Record<string, any> | null)?, TreeNode[]?]
 

@@ -12,7 +12,7 @@ export default defineConfigWithTheme({
   vite: {
     resolve: {
       alias: {
-        '@skirtle/vue-vnode-utils': resolve(__dirname, '../../vue-vnode-utils/src/vue-vnode-utils.ts')
+        '@skirtle/vue-vnode-utils': resolve(__dirname, '../../vue-vnode-utils/src/index.ts')
       }
     }
   },

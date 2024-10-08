@@ -33,7 +33,7 @@ export default defineConfig(({ mode }) => {
       emptyOutDir: false,
       minify: mode === 'production',
       lib: {
-        entry: resolve(__dirname, 'src/vue-vnode-utils.ts'),
+        entry: resolve(__dirname, 'src/index.ts'),
         name: 'VueVNodeUtils',
         formats: mode === 'neutral' ? ['cjs', 'es'] : ['es', 'iife'],
 
