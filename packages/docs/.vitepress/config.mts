@@ -1,7 +1,7 @@
 import { defineConfigWithTheme } from 'vitepress'
 import { resolve } from 'node:path'
 
-export default defineConfigWithTheme({
+export default ({ mode }: { mode: string }) => defineConfigWithTheme({
   srcDir: './src',
   outDir: './dist',
   base: '/vue-vnode-utils',
@@ -14,6 +14,10 @@ export default defineConfigWithTheme({
       alias: {
         '@skirtle/vue-vnode-utils': resolve(__dirname, '../../vue-vnode-utils/src/index.ts')
       }
+    },
+
+    define: {
+      __DEV__: JSON.stringify(mode !== 'production')
     }
   },
 

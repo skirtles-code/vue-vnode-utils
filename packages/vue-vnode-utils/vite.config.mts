@@ -2,6 +2,7 @@ import { resolve } from 'node:path'
 import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
+import replace from '@rollup/plugin-replace'
 import vue from '@vitejs/plugin-vue'
 import dts from 'vite-plugin-dts'
 
@@ -17,6 +18,12 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [
+      replace({
+        preventAssignment: true,
+        values: {
+          __DEV__: mode === 'production' ? 'false' : mode === 'development' ? 'true' : '!(process.env.NODE_ENV === "production")'
+        }
+      }),
       vue(),
       dtsPlugin
     ],
@@ -25,9 +32,6 @@ export default defineConfig(({ mode }) => {
         '@': fileURLToPath(new URL('./src', import.meta.url))
       }
     },
-    define: ['production', 'development'].includes(mode) ? {
-      'process.env.NODE_ENV': JSON.stringify(mode)
-    } : {},
     build: {
       target: 'es2019',
       emptyOutDir: false,

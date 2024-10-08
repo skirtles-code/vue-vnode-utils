@@ -15,9 +15,6 @@ import {
   type VNodeChild
 } from 'vue'
 
-// @ts-ignore
-const DEV = process.env.NODE_ENV !== 'production'
-
 export const isComment = (vnode: unknown): vnode is (null | undefined | boolean | (VNode & { type: typeof CommentVNode })) => {
   return getType(vnode) === 'comment'
 }
@@ -157,7 +154,7 @@ const getFragmentChildren = (fragmentVNode: VNode | VNodeArrayChildren): VNodeAr
     return children
   }
 
-  if (DEV) {
+  if (__DEV__) {
     warn('getFragmentChildren', `Unknown children for fragment: ${typeOf(children)}`)
   }
 
@@ -174,7 +171,7 @@ export type IterationOptions = {
 
 // esbuild can remove an identity function, so long as it uses a function declaration
 function freeze<T>(obj: T): T {
-  if (DEV) {
+  if (__DEV__) {
     return Object.freeze(obj)
   }
 
@@ -225,14 +222,14 @@ export const addProps = (
   callback: (vnode: VNode) => (Record<string, unknown> | null | void),
   options: IterationOptions = COMPONENTS_AND_ELEMENTS
 ): VNodeArrayChildren => {
-  if (DEV) {
+  if (__DEV__) {
     checkArguments('addProps', [children, callback, options], ['array', 'function', 'object'])
   }
 
   return replaceChildrenInternal(children, (vnode) => {
     const props = callback(vnode)
 
-    if (DEV) {
+    if (__DEV__) {
       const typeofProps = typeOf(props)
 
       if (!['object', 'null', 'undefined'].includes(typeofProps)) {
@@ -251,7 +248,7 @@ export const replaceChildren = (
   callback: (vnode: VNode) => (VNode | VNodeArrayChildren | string | number | void),
   options: IterationOptions = SKIP_COMMENTS
 ): VNodeArrayChildren => {
-  if (DEV) {
+  if (__DEV__) {
     checkArguments('replaceChildren', [children, callback, options], ['array', 'function', 'object'])
   }
 
@@ -293,7 +290,7 @@ const replaceChildrenInternal = (
       if (vnode) {
         const newNodes = callback(vnode) ?? vnode
 
-        if (DEV) {
+        if (__DEV__) {
           const typeOfNewNodes = typeOf(newNodes)
 
           if (!['array', 'vnode', 'string', 'number', 'undefined'].includes(typeOfNewNodes)) {
@@ -324,7 +321,7 @@ export const betweenChildren = (
   callback: (previousVNode: VNode, nextVNode: VNode) => (VNode | VNodeArrayChildren | string | number | void),
   options: IterationOptions = SKIP_COMMENTS
 ): VNodeArrayChildren => {
-  if (DEV) {
+  if (__DEV__) {
     checkArguments('betweenChildren', [children, callback, options], ['array', 'function', 'object'])
   }
 
@@ -336,7 +333,7 @@ export const betweenChildren = (
     if (previousVNode) {
       insertedNodes = callback(previousVNode, vnode)
 
-      if (DEV) {
+      if (__DEV__) {
         const typeOfInsertedNodes = typeOf(insertedNodes)
 
         if (!['array', 'vnode', 'string', 'number', 'undefined'].includes(typeOfInsertedNodes)) {
@@ -364,7 +361,7 @@ export const someChild = (
   callback: (vnode: VNode) => unknown,
   options: IterationOptions = ALL_VNODES
 ): boolean => {
-  if (DEV) {
+  if (__DEV__) {
     checkArguments('someChild', [children, callback, options], ['array', 'function', 'object'])
   }
 
@@ -398,7 +395,7 @@ export const everyChild = (
   callback: (vnode: VNode) => unknown,
   options: IterationOptions = ALL_VNODES
 ): boolean => {
-  if (DEV) {
+  if (__DEV__) {
     checkArguments('everyChild', [children, callback, options], ['array', 'function', 'object'])
   }
 
@@ -410,7 +407,7 @@ export const eachChild = (
   callback: (vnode: VNode) => void,
   options: IterationOptions = ALL_VNODES
 ): void => {
-  if (DEV) {
+  if (__DEV__) {
     checkArguments('eachChild', [children, callback, options], ['array', 'function', 'object'])
   }
 
@@ -424,7 +421,7 @@ export const findChild = (
   callback: (vnode: VNode) => unknown,
   options: IterationOptions = ALL_VNODES
 ): (VNode | undefined) => {
-  if (DEV) {
+  if (__DEV__) {
     checkArguments('findChild', [children, callback, options], ['array', 'function', 'object'])
   }
 
@@ -443,7 +440,7 @@ export const findChild = (
 const COLLAPSIBLE_WHITESPACE_RE = /\S|\u00a0/
 
 export const isEmpty = (children: VNodeArrayChildren): boolean => {
-  if (DEV) {
+  if (__DEV__) {
     checkArguments('isEmpty', [children], ['array'])
   }
 
@@ -459,7 +456,7 @@ export const isEmpty = (children: VNodeArrayChildren): boolean => {
 }
 
 export const extractSingleChild = (children: VNodeArrayChildren): VNode | undefined => {
-  if (DEV) {
+  if (__DEV__) {
     checkArguments('extractSingleChild', [children], ['array'])
   }
 
@@ -467,7 +464,7 @@ export const extractSingleChild = (children: VNodeArrayChildren): VNode | undefi
     return true
   }, COMPONENTS_AND_ELEMENTS)
 
-  if (DEV) {
+  if (__DEV__) {
     someChildInternal(children, (vnode) => {
       let warning = ''
 
