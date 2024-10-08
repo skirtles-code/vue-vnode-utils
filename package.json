@@ -1,68 +1,14 @@
 {
-  "name": "@skirtle/vue-vnode-utils",
-  "version": "0.1.4",
-  "author": "skirtle",
-  "license": "MIT",
-  "description": "Utilities for manipulating Vue 3 VNodes",
-  "keywords": ["vue", "vuejs", "vue3", "vnode", "vnodes", "vdom", "render", "slot", "slots"],
-  "homepage": "https://skirtles-code.github.io/vue-vnode-utils/",
-  "bugs": "https://github.com/skirtles-code/vue-vnode-utils/issues",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/skirtles-code/vue-vnode-utils.git"
-  },
-  "funding": "https://github.com/sponsors/skirtles-code",
-  "sideEffects": false,
-  "main": "dist/vue-vnode-utils.cjs",
-  "module": "dist/vue-vnode-utils.esm-bundler.js",
-  "unpkg": "dist/vue-vnode-utils.global.dev.js",
-  "jsdelivr": "dist/vue-vnode-utils.global.dev.js",
-  "types": "dist/vue-vnode-utils.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/vue-vnode-utils.d.ts",
-      "import": "./dist/vue-vnode-utils.esm-bundler.js",
-      "require": "./dist/vue-vnode-utils.cjs"
-    },
-    "./dist/*": "./dist/*",
-    "./package.json": "./package.json"
-  },
-  "files": [
-    "dist"
-  ],
-  "peerDependencies": {
-    "vue": "^3.2.0"
-  },
-  "devDependencies": {
-    "@tsconfig/node18": "^18.2.4",
-    "@types/jsdom": "^21.1.7",
-    "@types/node": "^22.7.4",
-    "@vitejs/plugin-vue": "^5.1.4",
-    "@vitest/coverage-v8": "^2.1.2",
-    "@vue/tsconfig": "^0.5.1",
-    "jsdom": "^25.0.1",
-    "rimraf": "^6.0.1",
-    "typescript": "^5.6.2",
-    "vite": "^5.4.8",
-    "vite-plugin-dts": "^4.2.3",
-    "vitepress": "^1.3.4",
-    "vitest": "^2.1.2",
-    "vue": "^3.5.11",
-    "vue-tsc": "^2.1.6"
-  },
+  "private": true,
+  "type": "module",
   "scripts": {
-    "test:unit": "vitest --environment jsdom",
-    "coverage": "vitest run --coverage --environment jsdom",
-    "clean": "rimraf dist && rimraf coverage",
-    "build": "rimraf dist && pnpm build-dev && pnpm build-neutral && pnpm build-prod && pnpm type-check",
-    "build-dev": "vite build --mode development",
-    "build-neutral": "vite build --mode neutral",
-    "build-prod": "vite build --mode production",
-    "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
-    "docs:clean": "rimraf docs/.vitepress/dist && rimraf docs/.vitepress/cache",
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs",
+    "clean": "pnpm run -r clean",
+    "build": "pnpm run -r build",
+    "type-check": "pnpm run -r type-check",
+    "docs:dev": "pnpm run --filter ./packages/docs -r dev",
+    "docs:build": "pnpm run --filter ./packages/docs -r build",
+    "test:unit": "pnpm run --filter ./packages/vue-vnode-utils -r test:unit",
+    "coverage": "pnpm run --filter ./packages/vue-vnode-utils -r coverage",
     "preinstall": "npx only-allow pnpm"
   }
 }

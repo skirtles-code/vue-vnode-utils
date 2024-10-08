@@ -2,6 +2,8 @@ import { defineConfigWithTheme } from 'vitepress'
 import { resolve } from 'node:path'
 
 export default defineConfigWithTheme({
+  srcDir: './src',
+  outDir: './dist',
   base: '/vue-vnode-utils',
   title: '@skirtle/vue-vnode-utils',
   lang: 'en-US',
@@ -10,7 +12,7 @@ export default defineConfigWithTheme({
   vite: {
     resolve: {
       alias: {
-        '@skirtle/vue-vnode-utils': resolve(__dirname, '../../src/vue-vnode-utils.ts')
+        '@skirtle/vue-vnode-utils': resolve(__dirname, '../../vue-vnode-utils/src/vue-vnode-utils.ts')
       }
     }
   },
