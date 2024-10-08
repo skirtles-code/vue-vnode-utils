@@ -9,6 +9,13 @@
     "docs:build": "pnpm run --filter ./packages/docs -r build",
     "test:unit": "pnpm run --filter ./packages/vue-vnode-utils -r test:unit",
     "coverage": "pnpm run --filter ./packages/vue-vnode-utils -r coverage",
-    "preinstall": "npx only-allow pnpm"
+    "preinstall": "npx only-allow pnpm",
+    "postinstall": "simple-git-hooks"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm run type-check"
+  },
+  "devDependencies": {
+    "simple-git-hooks": "^2.11.1"
   }
 }
