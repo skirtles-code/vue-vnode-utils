@@ -33,6 +33,7 @@ import {
   extractSingleChild,
   findChild,
   isEmpty,
+  reduceChildren,
   replaceChildren,
   SKIP_COMMENTS,
   someChild
@@ -1513,6 +1514,40 @@ describe('findChild', () => {
     expect(calledFor).toHaveLength(3)
     expect(calledFor[0]).toBe(startNodes[0])
     expect(isText(calledFor[1]) && getText(calledFor[1])).toBe('Text')
+    expect(calledFor[2].type).toBe('span')
+  })
+})
+
+describe('reduceChildren', () => {
+  it('reduceChildren - 0c8b', () => {
+    const startNodes = [h('p'), h({}), [false, 'text', h('span')]].map(toVNode)
+
+    const calledFor: VNode[] = []
+
+    let length = reduceChildren(startNodes, (value, vnode) => {
+      calledFor.push(vnode)
+      return value + 1
+    }, 0)
+
+    expect(length).toBe(5)
+    expect(calledFor).toHaveLength(5)
+    expect(calledFor[0]).toBe(startNodes[0])
+    expect(isComponent(calledFor[1])).toBe(true)
+    expect(isComment(calledFor[2])).toBe(true)
+    expect(isText(calledFor[3]) && getText(calledFor[3])).toBe('text')
+    expect(calledFor[4].type).toBe('span')
+
+    calledFor.length = 0
+
+    length = reduceChildren(startNodes, (value, vnode) => {
+      calledFor.push(vnode)
+      return value + 1
+    }, 0, COMPONENTS_AND_ELEMENTS)
+
+    expect(length).toBe(3)
+    expect(calledFor).toHaveLength(3)
+    expect(calledFor[0]).toBe(startNodes[0])
+    expect(isComponent(calledFor[1])).toBe(true)
     expect(calledFor[2].type).toBe('span')
   })
 })
