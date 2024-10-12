@@ -377,6 +377,37 @@ Options that can be passed to the iterators to filter the node types that should
 
 Some common configurations are available via the constants `ALL_VNODES`, `COMPONENTS_AND_ELEMENTS` and `SKIP_COMMENTS`.
 
+## reduceChildren() <Badge text="0.2+" />
+
+### Type
+
+```ts
+function reduceChildren<R>(
+  children: VNodeArrayChildren,
+  callback: (previousValue: R, vnode: VNode) => R,
+  initialValue: R,
+  options: IterationOptions = ALL_VNODES
+): R
+```
+
+### Description
+
+An iterator for 'top-level' nodes, comparable to `Array.protoype.reduce`. The children of a fragment will be considered 'top-level' nodes rather than the fragment itself.
+
+The callback will be called for each VNode, which will be passed as the second argument. The first argument will be the previous value of the reduction. The callback should return the new value of the reduction.
+
+`reduceChildren()` will return the final value of the reduction, i.e. the value returned by the callback for the last VNode.
+
+Unlike `Array.prototype.reduce`, the `initialValue` is a required argument for `reduceChildren()`.
+
+The callback will be passed fully instantiated VNodes. Children will be converted to VNodes as required.
+
+The [`options`](#iterationoptions) object can be used to decide which node types should be passed to the callback. If no options object is passed then all nodes will be iterated. If an `options` object is passed, all nodes will be skipped by default unless explicitly ruled in.
+
+### See also
+
+* [Guide - Iterators](/guide/iterators.html)
+
 ## replaceChildren()
 
 ### Type

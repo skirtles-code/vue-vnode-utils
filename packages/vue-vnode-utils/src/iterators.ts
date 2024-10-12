@@ -355,6 +355,23 @@ export const findChild = (
   return node
 }
 
+export const reduceChildren = <R>(
+  children: VNodeArrayChildren,
+  callback: (previousValue: R, vnode: VNode) => R,
+  initialValue: R,
+  options: IterationOptions = ALL_VNODES
+): R => {
+  if (__DEV__) {
+    checkArguments('reduceChildren', [children, callback, null, options], ['array', 'function', 'null', 'object'])
+  }
+
+  someChildInternal(children, (vnode) => {
+    initialValue = callback(initialValue, vnode)
+  }, options)
+
+  return initialValue
+}
+
 const COLLAPSIBLE_WHITESPACE_RE = /\S|\u00a0/
 
 export const isEmpty = (children: VNodeArrayChildren): boolean => {
