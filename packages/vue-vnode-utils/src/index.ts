@@ -22,6 +22,7 @@ export {
   findChild,
   isEmpty,
   type IterationOptions,
+  reduceChildren,
   replaceChildren,
   SKIP_COMMENTS,
   someChild
