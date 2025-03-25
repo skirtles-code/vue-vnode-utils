@@ -1,21 +1,45 @@
 {
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@9.15.4",
+  "engines": {
+    "node": ">=v18.3.0"
+  },
+  "devDependencies": {
+    "@eslint/compat": "^1.2.7",
+    "@stylistic/eslint-plugin": "^4.2.0",
+    "@tsconfig/node22": "^22.0.0",
+    "@types/node": "^22.13.9",
+    "@vitest/eslint-plugin": "^1.1.36",
+    "@vue/eslint-config-typescript": "^14.5.0",
+    "eslint": "^9.21.0",
+    "eslint-plugin-vue": "~10.0.0",
+    "jiti": "^2.4.2",
+    "lint-staged": "^15.4.3",
+    "npm-run-all2": "^7.0.2",
+    "simple-git-hooks": "^2.11.1",
+    "typescript": "~5.8.0"
+  },
   "scripts": {
     "clean": "pnpm run -r clean",
-    "build": "pnpm run -r build",
-    "type-check": "pnpm run -r type-check",
     "docs:dev": "pnpm run --filter ./packages/docs -r dev",
     "docs:build": "pnpm run --filter ./packages/docs -r build",
     "test:unit": "pnpm run --filter ./packages/vue-vnode-utils -r test:unit",
     "coverage": "pnpm run --filter ./packages/vue-vnode-utils -r coverage",
-    "preinstall": "npx only-allow pnpm",
+    "type-check": "run-p type-check:*",
+    "type-check:packages": "pnpm run -r type-check",
+    "type-check:self": "tsc",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "lint:staged": "lint-staged",
+    "build": "pnpm run -r build",
+    "preinstall": "node scripts/preinstall.js",
     "postinstall": "simple-git-hooks"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm run type-check"
+    "pre-commit": "pnpm exec run-s type-check lint:staged"
   },
-  "devDependencies": {
-    "simple-git-hooks": "^2.11.1"
+  "lint-staged": {
+    "*.{vue,js,jsx,cjs,mjs,ts,tsx,cts,mts}": "eslint --fix"
   }
 }

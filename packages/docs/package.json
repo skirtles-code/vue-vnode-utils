@@ -1,18 +1,27 @@
 {
   "private": true,
-  "scripts": {
-    "clean": "rimraf dist && rimraf .vitepress/cache",
-    "dev": "vitepress dev .",
-    "build": "vitepress build .",
-    "preview": "vitepress preview .",
-    "preinstall": "npx only-allow pnpm"
-  },
+  "type": "module",
   "dependencies": {
-    "vue": "^3.5.11"
+    "vue": "^3.5.13"
   },
   "devDependencies": {
-    "@types/node": "^22.7.4",
+    "@tsconfig/node22": "^22.0.0",
+    "@types/node": "^22.13.9",
+    "@vue/tsconfig": "^0.7.0",
+    "npm-run-all2": "^7.0.2",
     "rimraf": "^6.0.1",
-    "vitepress": "^1.3.4"
+    "typescript": "~5.8.0",
+    "vitepress": "^1.6.3",
+    "vue-tsc": "^2.2.8"
+  },
+  "scripts": {
+    "clean": "rimraf dist .vitepress/cache",
+    "dev": "vitepress dev .",
+    "type-check:code": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
+    "type-check:config": "vue-tsc --noEmit -p tsconfig.node.json --composite false",
+    "type-check": "run-p -c type-check:*",
+    "build:only": "vitepress build .",
+    "build": "run-p -c type-check \"build:only {@}\" --",
+    "preview": "vitepress preview ."
   }
 }

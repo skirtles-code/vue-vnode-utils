@@ -13,7 +13,7 @@ export default {
 
       return [
         clone,
-        h('pre', `outerHTML: ${ rootRef.value?.outerHTML }`)
+        h('pre', `outerHTML: ${rootRef.value?.outerHTML}`)
       ]
     }
   }

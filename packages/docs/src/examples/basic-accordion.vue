@@ -26,7 +26,7 @@ export default {
         }
       })
 
-      return h('div', { class : 'accordion' }, children)
+      return h('div', { class: 'accordion' }, children)
     }
   }
 }
