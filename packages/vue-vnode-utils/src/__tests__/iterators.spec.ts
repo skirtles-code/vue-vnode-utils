@@ -210,7 +210,7 @@ describe('addProps', () => {
           'text node',
           ['div', { class: 'bold', attribute: 'value' }],
           [Fragment, null, [
-            ['span', {}, ['more text']],
+            ['span', {}, ['more text']]
           ]]
         ]
       ]),
@@ -241,7 +241,7 @@ describe('addProps', () => {
         'text node',
         h('div', { class: 'bold red', attribute: 'value' }),
         [
-          h('span', { class: 'red' }, 'more text'),
+          h('span', { class: 'red' }, 'more text')
         ]
       ], [
         null,
@@ -254,7 +254,7 @@ describe('addProps', () => {
         'text node',
         h('div', { class: 'bold', attribute: 'value' }),
         [
-          h('span', {}, 'more text'),
+          h('span', {}, 'more text')
         ]
       ], [
         null,
@@ -570,7 +570,7 @@ describe('replaceChildren', () => {
           'text node',
           ['div', { class: 'bold', attribute: 'value' }],
           [Fragment, null, [
-            ['span', {}, ['more text']],
+            ['span', {}, ['more text']]
           ]]
         ]
       ]),
@@ -793,7 +793,7 @@ describe('betweenChildren', () => {
     expect(Array.isArray(nodes)).toBe(true)
     expect(nodes).toHaveLength(4)
 
-    compareChildren(nodes, [h('div'), 'hello', h('strong', null,['world']), h('span')])
+    compareChildren(nodes, [h('div'), 'hello', h('strong', null, ['world']), h('span')])
     compareChildren(startNodes, [h('div'), h('span')])
   })
 

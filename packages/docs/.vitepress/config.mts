@@ -1,23 +1,38 @@
+import { fileURLToPath, URL } from 'node:url'
+
 import { defineConfigWithTheme } from 'vitepress'
-import { resolve } from 'node:path'
 
 export default ({ mode }: { mode: string }) => defineConfigWithTheme({
   srcDir: './src',
   outDir: './dist',
-  base: '/vue-vnode-utils',
+  base: '/vue-vnode-utils/',
   title: '@skirtle/vue-vnode-utils',
   lang: 'en-US',
   description: 'VNode utilities for Vue',
 
+  sitemap: {
+    hostname: 'https://skirtles-code.github.io/vue-vnode-utils/'
+  },
+
+  transformHead({ page }) {
+    if (page !== '404.md') {
+      const canonicalUrl = `https://skirtles-code.github.io/vue-vnode-utils/${page}`
+        .replace(/index\.md$/, '')
+        .replace(/\.md$/, '.html')
+
+      return [['link', { rel: 'canonical', href: canonicalUrl }]]
+    }
+  },
+
   vite: {
     resolve: {
       alias: {
-        '@skirtle/vue-vnode-utils': resolve(__dirname, '../../vue-vnode-utils/src/index.ts')
+        '@skirtle/vue-vnode-utils': fileURLToPath(new URL('../../vue-vnode-utils/src/', import.meta.url))
       }
     },
 
     define: {
-      __DEV__: JSON.stringify(mode !== 'production')
+      __DEV__: mode !== 'production'
     }
   },
 

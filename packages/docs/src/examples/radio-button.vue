@@ -16,10 +16,10 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue'])
 
 const radioModel = computed({
-  get () {
+  get() {
     return props.modelValue
   },
-  set (newChecked) {
+  set(newChecked) {
     emit('update:modelValue', newChecked)
   }
 })

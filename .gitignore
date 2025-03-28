@@ -14,6 +14,10 @@ dist-ssr
 coverage
 *.local
 packages/docs/.vitepress/cache
+packages/vue-vnode-utils/README.md
+
+/cypress/videos/
+/cypress/screenshots/
 
 # Editor directories and files
 .vscode/*
@@ -24,3 +28,5 @@ packages/docs/.vitepress/cache
 *.njsproj
 *.sln
 *.sw?
+
+*.tsbuildinfo
