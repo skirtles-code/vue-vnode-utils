@@ -5,6 +5,7 @@
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.vitest.tsbuildinfo",
     "lib": [],
-    "types": ["node", "jsdom"]
+    "types": ["node", "jsdom"],
+    "noUncheckedIndexedAccess": false
   }
 }

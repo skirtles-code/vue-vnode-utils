@@ -16,9 +16,6 @@ coverage
 packages/docs/.vitepress/cache
 packages/vue-vnode-utils/README.md
 
-/cypress/videos/
-/cypress/screenshots/
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -30,3 +27,12 @@ packages/vue-vnode-utils/README.md
 *.sw?
 
 *.tsbuildinfo
+
+.eslintcache
+
+# Cypress
+/cypress/videos/
+/cypress/screenshots/
+
+# Vitest
+__screenshots__/

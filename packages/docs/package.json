@@ -2,17 +2,18 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "vue": "^3.5.18"
+    "vue": "catalog:"
   },
   "devDependencies": {
-    "@tsconfig/node22": "^22.0.2",
-    "@types/node": "^22.16.5",
-    "@vue/tsconfig": "^0.7.0",
-    "npm-run-all2": "^8.0.4",
-    "rimraf": "^6.0.1",
-    "typescript": "~5.8.0",
-    "vitepress": "^1.6.3",
-    "vue-tsc": "^3.0.4"
+    "@tsconfig/node24": "catalog:",
+    "@types/node": "catalog:",
+    "@vue/tsconfig": "catalog:",
+    "npm-run-all2": "catalog:",
+    "rimraf": "catalog:",
+    "typescript": "catalog:",
+    "vite": "^5.4.21",
+    "vitepress": "catalog:",
+    "vue-tsc": "catalog:"
   },
   "scripts": {
     "clean": "rimraf dist .vitepress/cache",
