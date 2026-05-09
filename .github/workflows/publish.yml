@@ -1,0 +1,41 @@
+# Publish package to the npm registry
+name: Publish package to npm
+
+on:
+  # Run the workflow when a new tag is pushed starting with `v`
+  # push:
+  #  tags:
+  #    - 'v*'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  publish:
+    if: github.repository == 'skirtles-code/vue-vnode-utils'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Install pnpm
+        uses: pnpm/action-setup@v5
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build
+        run: pnpm --filter "@skirtle/vue-vnode-utils" run build
+      - name: Publish
+        run: pnpm --filter "@skirtle/vue-vnode-utils" publish
+  docs:
+    needs: publish
+    uses: ./.github/workflows/pages.yml

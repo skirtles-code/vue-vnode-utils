@@ -10,12 +10,12 @@ import pluginVitest from '@vitest/eslint-plugin'
 export default defineConfigWithVueTs(
   {
     name: 'app/files-to-lint',
-    files: ['**/*.{ts,mts,vue}']
+    files: ['**/*.{vue,ts,mts}']
   },
 
   includeIgnoreFile(path.resolve(path.dirname(fileURLToPath(import.meta.url)), '.gitignore')),
 
-  pluginVue.configs['flat/essential'],
+  ...pluginVue.configs['flat/essential'],
   vueTsConfigs.recommended,
 
   stylistic.configs.customize({

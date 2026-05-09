@@ -3,24 +3,23 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - '**'
   pull_request:
     branches:
-      - main
+      - '**'
 
 jobs:
   ci:
-    if: github.repository == 'skirtles-code/vue-vnode-utils'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v5
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 24
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
@@ -32,3 +31,6 @@ jobs:
         run: pnpm run build
       - name: Test
         run: pnpm run test:unit
+      - name: Release
+        if: github.repository == 'skirtles-code/vue-vnode-utils'
+        run: pnpx pkg-pr-new publish --commentWithSha --pnpm --packageManager=pnpm,npm,yarn './packages/vue-vnode-utils'
