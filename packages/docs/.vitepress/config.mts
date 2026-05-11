@@ -2,6 +2,39 @@ import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfigWithTheme } from 'vitepress'
 
+const versionsCache: Record<string, string> = {}
+
+async function getPackageVersion(
+  packageName: string,
+  oldVersion: string | number
+) {
+  const majorVersion = String(oldVersion).replace(/\..*/, '')
+  const packagePath = `${packageName}@${majorVersion}`
+
+  if (!versionsCache[packagePath]) {
+    const url = `https://unpkg.com/${packagePath}/package.json`
+    console.log(`- Loading ${url}`)
+    const response = await fetch(url)
+
+    if (!response.ok) {
+      throw new Error(`Failed to load ${url}, status code ${response.status}`)
+    }
+
+    const version = ((await response.json()) as { version: unknown })?.version
+
+    if (!version || typeof version !== 'string') {
+      throw new Error(
+        `Failed to load version for ${packageName}, version ${version}`
+      )
+    }
+
+    versionsCache[packagePath] = version
+    console.log(`- Loaded ${packageName}@${version}`)
+  }
+
+  return versionsCache[packagePath]
+}
+
 export default ({ mode }: { mode: string }) => defineConfigWithTheme({
   srcDir: './src',
   outDir: './dist',
@@ -21,6 +54,27 @@ export default ({ mode }: { mode: string }) => defineConfigWithTheme({
         .replace(/\.md$/, '.html')
 
       return [['link', { rel: 'canonical', href: canonicalUrl }]]
+    }
+  },
+
+  async transformPageData(pageData) {
+    if (mode !== 'production') {
+      return
+    }
+
+    const { packageVersions } = pageData.frontmatter
+
+    if (packageVersions) {
+      console.log(
+        `Updating frontmatter package versions for ${pageData.filePath}`
+      )
+
+      for (const pkg in packageVersions) {
+        packageVersions[pkg] = await getPackageVersion(
+          pkg,
+          packageVersions[pkg]
+        )
+      }
     }
   },
 
