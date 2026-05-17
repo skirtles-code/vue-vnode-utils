@@ -25,6 +25,11 @@
       "import": "./dist/vue-vnode-utils.esm-bundler.js",
       "require": "./dist/vue-vnode-utils.cjs"
     },
+    "./with-meta": {
+      "types": "./dist/with-meta/vue-vnode-utils.d.ts",
+      "import": "./dist/with-meta/vue-vnode-utils.esm-bundler.js",
+      "require": "./dist/with-meta/vue-vnode-utils.cjs"
+    },
     "./dist/*": "./dist/*",
     "./package.json": "./package.json"
   },
@@ -48,6 +53,7 @@
     "npm-run-all2": "catalog:",
     "publint": "catalog:",
     "rimraf": "catalog:",
+    "tsdown": "^0.22.0",
     "typescript": "catalog:",
     "vite": "catalog:",
     "vite-plugin-dts": "catalog:",
@@ -66,6 +72,9 @@
     "build:dev": "vite build --mode development",
     "build:neutral": "vite build --mode neutral",
     "build:prod": "vite build --mode production",
-    "build": "run-s clean:dist build:* type-check lint:package"
+    "vite:build": "run-s clean:dist build:* type-check lint:package",
+    "tsdown": "tsdown",
+    "tsdown:build": "run-s clean:dist build:copy tsdown type-check lint:package",
+    "build": "run-s tsdown:build"
   }
 }
