@@ -16,6 +16,7 @@ export {
   ALL_VNODES,
   betweenChildren,
   COMPONENTS_AND_ELEMENTS,
+  countChildren,
   eachChild,
   everyChild,
   extractSingleChild,
