@@ -60,6 +60,27 @@ The passed array and its contents will be left unmodified. Any fragment nodes wi
 * [Example - Inserting between children](/examples.html#inserting-between-children)
 * [Guide - Inserting new nodes](/guide/inserting-new-nodes.html)
 
+## countChildren() <Badge text="0.3+" />
+
+### Type
+
+```ts
+function countChildren(
+  children: VNodeArrayChildren,
+  options: IterationOptions = ALL_VNODES
+): number
+```
+
+### Description
+
+Counts the number of 'top-level' VNodes. The children of a fragment will be considered 'top-level' nodes rather than the fragment itself.
+
+The [`options`](#iterationoptions) object can be used to decide which node types should be counted. If no options object is passed then all nodes will be counted. If an `options` object is passed, all nodes will be skipped by default unless explicitly ruled in.
+
+### See also
+
+* [Guide - Other helpers](/guide/other-helpers.html)
+
 ## eachChild()
 
 ### Type

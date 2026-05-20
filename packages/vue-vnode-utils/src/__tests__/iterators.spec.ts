@@ -28,6 +28,7 @@ import {
   ALL_VNODES,
   betweenChildren,
   COMPONENTS_AND_ELEMENTS,
+  countChildren,
   eachChild,
   everyChild,
   extractSingleChild,
@@ -1613,5 +1614,31 @@ describe('extractSingleChild', () => {
     const out = extractSingleChild([staticNode, node])
 
     expect(out).toBe(node)
+  })
+})
+
+describe('countChildren', () => {
+  it('countChildren - 129c', () => {
+    expect(countChildren([])).toBe(0)
+    expect(countChildren([''])).toBe(1)
+    expect(countChildren(['Text'])).toBe(1)
+    expect(countChildren(['Text', 'Text'])).toBe(2)
+    expect(countChildren([['Text', 'Text', ['Text']], 'Text'])).toBe(4)
+    expect(countChildren([null])).toBe(1)
+    expect(countChildren([false])).toBe(1)
+    expect(countChildren([true])).toBe(1)
+    expect(countChildren([h('div')])).toBe(1)
+    expect(countChildren([h('div', {}, [h('span')])])).toBe(1)
+    expect(countChildren([h({ template: 'abc' })])).toBe(1)
+  })
+
+  it('countChildren - 9294', () => {
+    const children = [[], ['Text'], '', h('div'), h('span'), null, h({ template: 'abc' })]
+
+    expect(countChildren(children)).toBe(6)
+    expect(countChildren(children, ALL_VNODES)).toBe(6)
+    expect(countChildren(children, COMPONENTS_AND_ELEMENTS)).toBe(3)
+    expect(countChildren(children, SKIP_COMMENTS)).toBe(5)
+    expect(countChildren(children, {})).toBe(0)
   })
 })

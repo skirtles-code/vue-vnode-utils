@@ -429,3 +429,20 @@ export const extractSingleChild = (children: VNodeArrayChildren): VNode | undefi
 
   return node
 }
+
+export const countChildren = (
+  children: VNodeArrayChildren,
+  options: IterationOptions = ALL_VNODES
+) => {
+  if (__DEV__) {
+    checkArguments('count', [children, options], ['array', 'object'])
+  }
+
+  let count = 0
+
+  someChildInternal(children, () => {
+    ++count
+  }, options)
+
+  return count
+}
