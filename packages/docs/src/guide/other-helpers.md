@@ -1,5 +1,32 @@
 # Other helpers
 
+## Counting children
+
+A helper for counting the children.
+
+This uses the same iteration logic as the various [iterators](./iterators). Fragments are not counted directly, with the children of any fragments being counted instead.
+
+The second argument of `countChildren()` is optional and allows [iteration options](/api.html#iterationoptions) to be specified, controlling the types of VNodes that are counted.
+
+```js
+import { h } from 'vue'
+import { countChildren, SKIP_COMMENTS } from '@skirtle/vue-vnode-utils'
+
+function ChildComponent(_, { slots }) {
+  const children = slots.default?.() ?? []
+  const count = countChildren(children, SKIP_COMMENTS)
+
+  return h('div', [
+    h('div', `Child count: ${count}`),
+    count ? h('ul', children) : null
+  ])
+}
+```
+
+See it on the SFC Playground: [Composition API](https://play.vuejs.org/#eNp9VGtv0zAU/StXAamtaJPykJDCxoBp4v0Qm8QHgiBLnNara0e20xVV/e8c22nWdBvaPjS+55577vU93kSv6zpeNSxKoyNTaF5bMsw29ctM8mWttKUNaZYXlq8YbanSakkD4Add/BM39ge38wtlc9EC4qR3Gl8Z4DNZKGksccuWho472uHPTBLKWLa2KQ2+s3IwJjNX1ylZ3aDquBd/qxmTHaLKhbkFeSMgsM+RyV+jGwku8loIiBiO6PglbVx6pTQNbySSqoLUUQiT/4pdKvIcqzsFMf6PkjA7TA0fgNUitwxfREeXjbVK0qtC8GJxnEVt7SzyYaJzR5jjwIGTgA6ZAjOcXGOIE+um2OI7elpNIBmMXi2XQW3H6wmA4VUL8dL3whjYJvTkxkZb9LEL3BK937ofOXje8ZL1BPvMRPCd0KQ/CEQO++lBonEUVmqyzGusjJJYSj961PcBNJfuLiOLXpkF11awBOs4WUlVskljufCgLJpbW5s0SRpZL2ZxoZbJffikhK7Dw5iZ5eRSq2vDdFyyFfRk0e7CofRwvyG188v8bqNsqFCNtKdzLkrN5JjOP77/9vv06+fPZ18uzruc+2R6B7G1pypZlTfCUtVIWAgX5UlPFQpJJu3w9xjVjFDW0LZd37DYRVsc1+jDaM0zncQwwskJ/fy1h3VqAeypHu4YDuR7cxE8bRstaT4clHwFC3pr0833H88TKFN6uPE/tn9G3r+usCt54vCNAHxXbEQpySZ4xPkYl4A7MPavYCYujJt+u7GPCIVCx5dKl0yn9Lhek1GCl/RgOp2+cKFlrmdcYg1rhKf1uj1cYztLO0/pyXR3WOdlyeWsg6FyBiVthbxYzDQ0lyk9qJ67P590R+WiKPYqBzqakpPjKWFVT9mrF8Lo1BpcScVnB67AVtdcMP21dkvQdwdeFHX9wZ+5t6odMHLmrFjccX5l1sE43zTDzq/g8C5mIZrZED47/4LXYi+4VGUjgP5P8DvDFLDESgbYG0wMsvdwXu177xN0f2HO1pZJs2uqe2w9PovgDLfr97V+I/dp/Kzz7PYf9mdPuQ==) | [Options API](https://play.vuejs.org/#eNp9Vftv0zAQ/ldOAamdaJPykJDCYMA08X6ITeIHgiCLncara0f2pSuq+r9zfiRry4Y2qfXdd9/d+e5zN8mrtk1XHU/y5NhWRrT4olBi2WqD8FFY/C6wudBYSqiNXsIozfas6ZUdFQqgUHztYxivy04ibJy10kSkuEKbBwPsczrTdhLiAViJ5fioBxqOnVH9CUAgXxLNj/4MsAHka8xh9I2z0QRso69zQNPxyHmAemM4VwOuLqW9A/hadvyAr0f9DF/82cW6zyXHRrObDl3cKyn7TgossNYGxpVWFn0boGvARtjU9zR03HeZOgZ47lP3nlhBSFwo+j/OhnHRgcJaWSKnE8DxZYeoFbyspKgWz4skllQk3g1w7hKUZHDgLKBDpKTxTK9pPlN0A4r4gR5WU+qFGH0bQoWpDLyegDCijhDfyo6bbnkTenR3DdvhYm8pevcq/LSI561gfK9gH5lJ0Rea7V8EeQ772YMkkyTs+nRZtrTLWpEOwtiig5obJlskL+1CGJQ8I8VMV0ozPu1QSA8qkgaxtXmWdapdzFNa/uwufMaorkNjyu1yemn0teUmZXxF9RRJP3Cq9FB4VGoU6gYa2EaBEikpcnBUulN42gjJDFcTOP/w7uuv0y+fPp19vjgfYu4qk4j+EXbdqQoFDcqTnvYKH/+aUDYrNVrYxpUOG1/F5DRG76bWPNNJShI5OYEfXlQR66ol4F7V457hoPyjoL/4UDTjERMr0m18IYbzb88TKHO4v/Fftr+PovRDyhOH7yTB+2RHkIPqgkZ+UioaAs3A4h/JbVpZd/txYx8AJQodX2rDuMnhYbsGq6VgcG82mz3zz0Rp5kLRGrbknrXraFzTdjJscng0641tyZhQ8wFGmQuqJGYoq8XcUM0sh3v1U/fng27JXFXVTuZABzNw5XhKkqqn3MsX3NQpWhpJLeYHqnBPupDcfGndEuyrg14Uff3e29zbFS+YYhpeLW6xX9l1EM5Xw2nnV6TwwYdUNMfgPjv/TK/FjnOpWScJ/R/nN063QEusVYC9phujsndwvtp3XifU/YU9WyNXtm+qf3zjz1NCynC7flfrN+U+Tp8Mmt3+Bfk4a4M=)
+
+If you need more fine-grained control over the counting you can use [`eachChild()` or `reduceChildren()`](./iterators) instead.
+
 ## Extracting a single child
 
 Slots return an array of children, but some components only allow for one child in their slot, like Vue's built-in components `<KeepAlive>` and `<Transition>`. `extractSingleChild()` can be used to pull out a meaningful root node from a slot. It skips over fragments, comments and text nodes, trying to find a component or element node.
