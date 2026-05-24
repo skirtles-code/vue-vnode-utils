@@ -1,6 +1,7 @@
 export {
   ALL_VNODES,
   COMPONENTS_AND_ELEMENTS,
+  countChildren,
   extractSingleChild,
   getText,
   getType,

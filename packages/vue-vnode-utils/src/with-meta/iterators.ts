@@ -6,6 +6,7 @@ import {
   ALL_VNODES,
   betweenChildren as betweenChildrenRaw,
   COMPONENTS_AND_ELEMENTS,
+  countChildren,
   eachChild as eachChildRaw,
   everyChild as everyChildRaw,
   findChild as findChildRaw,
@@ -29,12 +30,6 @@ export type IterationMeta = {
   readonly length: number
 }
 
-function count(children: VNodeArrayChildren, options: IterationOptions) {
-  let count = 0
-  eachChildRaw(children, () => ++count, options)
-  return count
-}
-
 function setPropertyValue(obj: object, key: string, value: unknown): any {
   return Object.defineProperty(obj, key, {
     value,
@@ -47,7 +42,7 @@ function createMetaFactory(children: VNodeArrayChildren, options: IterationOptio
 
   const baseMeta = {
     get length() {
-      const length = count(children, options)
+      const length = countChildren(children, options)
       setPropertyValue(baseMeta, 'length', length)
       return length
     }
