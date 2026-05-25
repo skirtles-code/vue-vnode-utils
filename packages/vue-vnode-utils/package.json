@@ -53,7 +53,7 @@
     "npm-run-all2": "catalog:",
     "publint": "catalog:",
     "rimraf": "catalog:",
-    "tsdown": "^0.22.0",
+    "tsdown": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:",
     "vite-plugin-dts": "catalog:",
