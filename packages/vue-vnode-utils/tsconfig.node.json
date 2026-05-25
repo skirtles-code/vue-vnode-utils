@@ -1,6 +1,7 @@
 {
   "extends": "@tsconfig/node24/tsconfig.json",
   "include": [
+    "tsdown.config.*",
     "vite.config.*",
     "vitest.config.*",
     "cypress.config.*",

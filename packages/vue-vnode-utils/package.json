@@ -48,6 +48,7 @@
     "npm-run-all2": "catalog:",
     "publint": "catalog:",
     "rimraf": "catalog:",
+    "tsdown": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:",
     "vite-plugin-dts": "catalog:",
@@ -66,6 +67,9 @@
     "build:dev": "vite build --mode development",
     "build:neutral": "vite build --mode neutral",
     "build:prod": "vite build --mode production",
-    "build": "run-s clean:dist build:* type-check lint:package"
+    "vite:build": "run-s clean:dist build:* type-check lint:package",
+    "tsdown": "tsdown",
+    "tsdown:build": "run-s clean:dist build:copy tsdown type-check lint:package",
+    "build": "run-s tsdown:build"
   }
 }
