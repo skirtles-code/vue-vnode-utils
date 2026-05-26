@@ -1,8 +1,8 @@
 # Other helpers
 
-## Counting children
+## Counting children <Badge text="0.3+" />
 
-A helper for counting the children.
+The `countChildren()` helper can be used to count the top-level VNodes.
 
 This uses the same iteration logic as the various [iterators](./iterators). Fragments are not counted directly, with the children of any fragments being counted instead.
 
