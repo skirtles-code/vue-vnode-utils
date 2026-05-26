@@ -16,7 +16,7 @@ To use this metadata you'll need to import the functions from `@skirtle/vue-vnod
 
 The meta is passed in an object as the final argument of the callback for each iterator.
 
-The `length` property is a number and should be equivalent to calling [`countChildren()`](/other-helpers.html#counting-children). It will use the same iteration options as the iterator, so if you're skipping nodes then those nodes won't be included in the `length`. For most iterators, the `length` is the number of times the callback will be called during the iteration.
+The `length` property is a number and should be equivalent to calling [`countChildren()`](./other-helpers#counting-children). It will use the same iteration options as the iterator, so if you're skipping nodes then those nodes won't be included in the `length`. For most iterators, the `length` is the number of times the callback will be called during the iteration.
 
 The `index` is zero-based, counting up to `length - 1`.
 
