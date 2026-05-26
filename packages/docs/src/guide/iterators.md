@@ -91,3 +91,19 @@ For the specific case of counting children, the dedicated [`countChildren()`](./
 While these examples need to display the count, a more common scenario involves only needing to know whether the count is 0. The [`isEmpty()`](./other-helpers#checking-for-an-empty-slot) helper can be used in that case.
 
 It is worth noting that the count here is just a count of the VNodes. It is not necessarily an accurate count of the number of `<li>` elements. If any of the children had been a component it would have added 1 to the count, even though a component wouldn't necessarily render exactly one `<li>` element.
+
+The iteration index and total node count aren't passed to the callback by default. It's relatively easy to implement that yourself:
+
+```js
+const children = slots.default?.() ?? []
+const count = countChildren(children)
+let index = -1
+
+eachChild(children, (vnode) => {
+  index++
+
+  // ...
+})
+```
+
+But if you'd like the index and length to be passed to the callback you can use the [`with-meta`](./with-meta) iterators instead.

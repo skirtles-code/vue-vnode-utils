@@ -80,6 +80,7 @@ The [`options`](#iterationoptions) object can be used to decide which node types
 ### See also
 
 * [Guide - Other helpers](/guide/other-helpers.html)
+* [Guide - With meta](/guide/with-meta.html)
 
 ## eachChild()
 
