@@ -34,6 +34,13 @@ export default defineConfig(({ mode }): UserConfig => {
       dtsPlugin
     ],
 
+    resolve: {
+      alias: {
+        // Alias so `with-meta` can import from the root package
+        '@skirtle/vue-vnode-utils': fileURLToPath(new URL('./src/index.ts', import.meta.url))
+      }
+    },
+
     build: {
       target: 'es2019',
       emptyOutDir: false,

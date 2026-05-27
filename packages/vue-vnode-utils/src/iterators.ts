@@ -20,7 +20,7 @@ const warn = (method: string, msg: string) => {
   console.warn(`[${method}] ${msg}`)
 }
 
-const checkArguments = (method: string, passed: unknown[], expected: string[]) => {
+export const checkArguments = (method: string, passed: unknown[], expected: string[]) => {
   for (let index = 0; index < passed.length; ++index) {
     const t = typeOf(passed[index])
     const expect = expected[index]

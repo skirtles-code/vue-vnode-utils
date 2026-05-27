@@ -25,6 +25,11 @@
       "import": "./dist/vue-vnode-utils.esm-bundler.js",
       "require": "./dist/vue-vnode-utils.cjs"
     },
+    "./with-meta": {
+      "types": "./dist/with-meta/vue-vnode-utils.d.ts",
+      "import": "./dist/with-meta/vue-vnode-utils.esm-bundler.js",
+      "require": "./dist/with-meta/vue-vnode-utils.cjs"
+    },
     "./dist/*": "./dist/*",
     "./package.json": "./package.json"
   },

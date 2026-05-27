@@ -136,6 +136,9 @@ export default ({ mode }: { mode: string }) => defineConfigWithTheme({
           }, {
             text: 'Other helpers',
             link: '/guide/other-helpers.html'
+          }, {
+            text: 'With meta',
+            link: '/guide/with-meta.html'
           }
         ]
       }, {
